@@ -15,12 +15,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //2. custom:
-        //2.1 klass invullen:
-        TextView tv = (TextView) findViewById(R.id.huidigeKlas);
-        tv.setText("Huidige klas: '" + "???" + "'");//?? moet klas worden of 'geen' om aan te geven aan de gebruiker of deze zijn klaas wenst te wijzigen.
+        //2.1 fill in class:
+        TextView textView = (TextView) findViewById(R.id.huidigeKlas);
+        textView.setText("Huidige klas: '" + "???" + "'");//?? moet klas worden of 'geen' om aan te geven aan de gebruiker of deze zijn klaas wenst te wijzigen.
 
-        //2.2: click event
-        Button b = (Button) findViewById(R.id.setClass);
-        b.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SelectClass.class)));
+        //3.2: click event
+        //3.2.1: select class:
+        Button setClassButton = (Button) findViewById(R.id.setClass);
+        setClassButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SelectClass.class)));
+
+        //3.2.2: overview
+        Button overviewButton = (Button)findViewById(R.id.overview);
+        overviewButton.setOnClickListener(view->startActivity(new Intent(MainActivity.this, Overview.class)));
     }
 }
