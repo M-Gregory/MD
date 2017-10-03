@@ -1,0 +1,6 @@
+idee om bij te voegen:
+---------------------
+google api: sync met kalender
+draai screen -> visuals (libraries/api)
+bus uren (pxl->corda->pxl)
+caching (geen netwerk)
