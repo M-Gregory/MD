@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,9 +14,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //2. custom:
+        TitleClass.initialise(getTitle().toString());//init only once!
+
         //2.1 fill in class:
-        TextView textView = (TextView) findViewById(R.id.huidigeKlas);
-        textView.setText("Huidige klas: '" + "???" + "'");//?? moet klas worden of 'geen' om aan te geven aan de gebruiker of deze zijn klaas wenst te wijzigen.
+        String selectedClass = "???";
+        setTitle(TitleClass.getCustomisedTitle(selectedClass));
 
         //3.2: click event
         //3.2.1: select class:
@@ -25,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
         setClassButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SelectClass.class)));
 
         //3.2.2: overview
-        Button overviewButton = (Button)findViewById(R.id.overview);
-        overviewButton.setOnClickListener(view->startActivity(new Intent(MainActivity.this, Overview.class)));
+        Button overviewButton = (Button) findViewById(R.id.overview);
+        overviewButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, Overview.class)));
 
         //3.2.3: schedule
-        Button scheduleButton = (Button)findViewById(R.id.schedule);
-        scheduleButton.setOnClickListener(view->startActivity(new Intent(MainActivity.this, Schedule.class)));
+        Button scheduleButton = (Button) findViewById(R.id.schedule);
+        scheduleButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, Schedule.class)));
     }
 }

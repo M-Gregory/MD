@@ -7,9 +7,10 @@
     tools:context="be.pxl.webandmobile.webandmobile.MainActivity">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        tools:layout_margin="8dp">
 
         <RelativeLayout
             android:id="@+id/firstRow"
@@ -23,13 +24,6 @@
                 android:layout_height="wrap_content"
                 android:text="Wijzig klas" />
 
-            <TextView
-                android:id="@+id/huidigeKlas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/setClass"
-                android:layout_centerVertical="true"
-                android:text="klas" />
         </RelativeLayout>
 
         <RelativeLayout
