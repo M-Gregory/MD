@@ -2,4 +2,5 @@
     <string name="app_name">Web and mobile</string>
     <string name="title_activity_select_class">SelectClass</string>
     <string name="title_activity_overview">Overview</string>
+    <string name="title_activity_schedule">Schedule</string>
 </resources>

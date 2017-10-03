@@ -45,5 +45,19 @@
                 android:layout_height="wrap_content"
                 android:text="Overzicht" />
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/thirdRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/secondRow"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lessenrooster" />
+        </RelativeLayout>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

@@ -27,5 +27,9 @@ public class MainActivity extends AppCompatActivity {
         //3.2.2: overview
         Button overviewButton = (Button)findViewById(R.id.overview);
         overviewButton.setOnClickListener(view->startActivity(new Intent(MainActivity.this, Overview.class)));
+
+        //3.2.3: schedule
+        Button scheduleButton = (Button)findViewById(R.id.schedule);
+        scheduleButton.setOnClickListener(view->startActivity(new Intent(MainActivity.this, Schedule.class)));
     }
 }
