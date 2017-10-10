@@ -32,5 +32,9 @@ public class MainActivity extends AppCompatActivity {
         //3.2.3: schedule
         Button scheduleButton = (Button) findViewById(R.id.schedule);
         scheduleButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, Schedule.class)));
+
+        //3.3.1: bus main
+        Button busApiButton = (Button) findViewById(R.id.busApiButton);
+        busApiButton.setOnClickListener(view->startActivity(new Intent(MainActivity.this, BusApi.class)));
     }
 }
