@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         TitleClass.initialise(getTitle().toString());//init only once!
 
         //2.1 fill in class:
-        String selectedClass = "???";
+        String selectedClass = SelectClass.klasNaam;
         setTitle(TitleClass.getCustomisedTitle(selectedClass));
 
         //3.2: click event
