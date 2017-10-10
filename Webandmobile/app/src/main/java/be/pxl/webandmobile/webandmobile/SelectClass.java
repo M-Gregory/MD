@@ -24,12 +24,11 @@ public class SelectClass extends AppCompatActivity {
 
         //3. click event:
         Button b = (Button) findViewById(R.id.btn);
-        b.setOnClickListener(view -> startActivity(new Intent(SelectClass.this, MainActivity.class)));
-        b.setOnClickListener(click -> {
+       /* b.setOnClickListener(click -> {
             System.out.println("test");
             alert("you clicked me", this);
-        });
-
+        }); */
+        b.setOnClickListener(view -> startActivity(new Intent(SelectClass.this, MainActivity.class)));
     }
 
     private static void alert(String message, SelectClass context) {
