@@ -1,6 +1,7 @@
 package be.pxl.webandmobile.webandmobile;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,11 +24,11 @@ public class SelectClass extends AppCompatActivity {
 
         //3. click event:
         Button b = (Button) findViewById(R.id.btn);
-        b.setOnClickListener(click -> {
+       /* b.setOnClickListener(click -> {
             System.out.println("test");
             alert("you clicked me", this);
-        });
-
+        }); */
+        b.setOnClickListener(view -> startActivity(new Intent(SelectClass.this, MainActivity.class)));
     }
 
     private static void alert(String message, SelectClass context) {
