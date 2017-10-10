@@ -24,6 +24,17 @@
                 android:layout_height="wrap_content"
                 android:text="Wijzig klas" />
 
+           <TextView
+                android:id="@+id/setClassName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="Klas 1"
+                android:textAlignment="center"
+                android:textSize="18pt" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -38,6 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Overzicht" />
+
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -53,5 +66,6 @@
                 android:layout_height="wrap_content"
                 android:text="Lessenrooster" />
         </RelativeLayout>
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
