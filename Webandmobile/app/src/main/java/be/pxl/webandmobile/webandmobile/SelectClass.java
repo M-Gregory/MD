@@ -18,7 +18,7 @@ public class SelectClass extends AppCompatActivity {
 
         //2. fill spinner (thread it!)
         Spinner s = (Spinner) findViewById(R.id.dropdown);
-        String[] contents = {"klas 1", "klas 2", "klas 3"};//via api of webrip
+        String[] contents = {"1 TIN", "2 TIN", "3 TIN"};//via api of webrip
         s.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, contents));
 
         //3. click event:
