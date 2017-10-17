@@ -43,7 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativeYear"
             android:layout_marginTop="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/fab_margin">
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textSpecialization"
@@ -65,7 +66,8 @@
             android:id="@+id/relativeClass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/relativeSpecialization">
+            android:layout_below="@+id/relativeSpecialization"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textClass"
@@ -100,7 +102,7 @@
                 android:text="Selecteer klas" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <!-- <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             tools:layout_editor_absoluteY="8dp"
@@ -114,6 +116,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
                 android:visibility="visible" />
-        </RelativeLayout>
+        </RelativeLayout> -->
     </RelativeLayout>
 </RelativeLayout>

@@ -13,6 +13,10 @@ import java.net.URL;
  */
 
 public class LessenroosterAPI extends AsyncTask<Void, Void, String>{
+    public void getX() {
+
+    }
+
 
     @Override
     protected String doInBackground(Void... voids) {
