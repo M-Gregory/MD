@@ -102,20 +102,22 @@
                 android:text="Selecteer klas" />
         </RelativeLayout>
 
-        <!-- <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="8dp">
+        <RelativeLayout
+            android:id="@+id/relativeProgressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeButton"
+            android:layout_marginTop="50dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            >
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:layout_centerHorizontal="true"
-                android:layout_centerInParent="true"
-                android:visibility="visible" />
-        </RelativeLayout> -->
+                android:visibility="gone" />
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

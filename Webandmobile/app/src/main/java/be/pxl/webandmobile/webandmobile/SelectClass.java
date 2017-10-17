@@ -20,6 +20,9 @@ public class SelectClass extends AppCompatActivity {
     private Spinner classSpinner;
     private View specializationLayout;
     private View classLayout;
+    private LessenroosterAPI api;
+
+    //TODO: Progressbar tijdens het inladen van klassen (3e spinner) tonen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +66,11 @@ public class SelectClass extends AppCompatActivity {
 
                     if(selected.startsWith("3")) {
                         specializationLayout.setVisibility(View.VISIBLE);
-                        classLayout.setVisibility(View.GONE);
                     } else {
-                        classLayout.setVisibility(View.VISIBLE);
                         specializationLayout.setVisibility(View.GONE);
                     }
+
+                    classLayout.setVisibility(View.VISIBLE);
                 } else {
                     started = true;
                 }
@@ -101,9 +104,7 @@ public class SelectClass extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(classSelected) {
-                    String selected = classSpinner.getSelectedItem().toString();
 
-                    alert(selected, SelectClass.this);
                 } else {
                     classSelected = true;
                 }
