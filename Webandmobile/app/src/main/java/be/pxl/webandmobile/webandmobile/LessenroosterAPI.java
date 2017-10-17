@@ -13,8 +13,19 @@ import java.net.URL;
  */
 
 public class LessenroosterAPI extends AsyncTask<Void, Void, String>{
-    public void getX() {
+    public void getClasses() {
+        //haalt alle klassen op van het gekozen jaar/richting
+        //1TIN, 2TIN, 3AON, 3SNB of 3 SWM
+    }
 
+    public void getSpecClasses() {
+        //haalt de info op vd klas, naam, lector, code
+        //bv call op http://data.pxl.be/roosters/v1/klassen/3AOND/vakken
+    }
+
+    public void getClassDetails() {
+        //haalt details vd klas op, uren etc
+        //call op http://data.pxl.be/roosters/v1/klassen/3AOND/vakken/4547PR
     }
 
 

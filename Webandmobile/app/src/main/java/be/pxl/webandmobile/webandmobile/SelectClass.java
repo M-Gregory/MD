@@ -15,6 +15,11 @@ public class SelectClass extends AppCompatActivity {
     private boolean started;
     private boolean classSelected;
     private boolean specSelected;
+    private Spinner yearSpinner;
+    private Spinner specSpinner;
+    private Spinner classSpinner;
+    private View specializationLayout;
+    private View classLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +28,20 @@ public class SelectClass extends AppCompatActivity {
         setContentView(R.layout.activity_select_class);
 
         //2. fill spinner (thread it!)
-        Spinner yearSpinner = (Spinner) findViewById(R.id.dropdownYear);
+        yearSpinner = (Spinner) findViewById(R.id.dropdownYear);
         String[] contents = {"1 TIN", "2 TIN", "3 TIN"};//via api of webrip
         yearSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, contents));
 
-        Spinner specSpinner = (Spinner) findViewById(R.id.dropdownSpecialization);
+        specSpinner = (Spinner) findViewById(R.id.dropdownSpecialization);
         String[] specContents = {"AON", "SNB", "SWM"};//via api of webrip
         specSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, specContents));
 
-        Spinner classSpinner = (Spinner) findViewById(R.id.dropdownClass);
+        classSpinner = (Spinner) findViewById(R.id.dropdownClass);
         String[] classContents = {"3AONA", "3AOND", "3SNBA", "3SWMA"};//via api of webrip
         classSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, classContents));
+
+        classLayout = findViewById(R.id.relativeClass);
+        specializationLayout = findViewById(R.id.relativeSpecialization);
 
         //3. click event:
         Button b = (Button) findViewById(R.id.btn);
@@ -47,17 +55,11 @@ public class SelectClass extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Spinner yearSpinner = (Spinner) findViewById(R.id.dropdownYear);
-        Spinner specSpinner = (Spinner) findViewById(R.id.dropdownSpecialization);
-        Spinner classSpinner = (Spinner) findViewById(R.id.dropdownClass);
-
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(started) {
                     String selected = yearSpinner.getSelectedItem().toString();
-                    View specializationLayout = findViewById(R.id.relativeSpecialization);
-                    View classLayout = findViewById(R.id.relativeClass);
 
                     if(selected.startsWith("3")) {
                         specializationLayout.setVisibility(View.VISIBLE);
@@ -82,7 +84,6 @@ public class SelectClass extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(specSelected) {
                     String selected = specSpinner.getSelectedItem().toString();
-                    View classLayout = findViewById(R.id.relativeClass);
                     classLayout.setVisibility(View.VISIBLE);
                     alert(selected, SelectClass.this);
                 } else {
