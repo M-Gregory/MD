@@ -28,7 +28,11 @@
             android:name=".Schedule"
             android:label="@string/title_activity_schedule"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BusApi"></activity>
+        <activity android:name=".BusApi" />
+        <activity
+            android:name=".TempBusShow"
+            android:label="@string/title_activity_temp_bus_show"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

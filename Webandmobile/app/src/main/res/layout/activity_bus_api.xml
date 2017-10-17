@@ -37,6 +37,7 @@
         </RelativeLayout>
 
         <Button
+            android:id="@+id/selectBusStop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/busLayout1"
