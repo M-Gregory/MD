@@ -7,15 +7,40 @@
     tools:context="be.pxl.webandmobile.webandmobile.BusApi">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
-        <TextView
-            android:id="@+id/busTextView"
+        <RelativeLayout
+            android:id="@+id/busLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Text comes here"
-            android:layout_margin="0dp" />
+            android:layout_margin="5dp">
+
+        <TextView
+            android:id="@+id/selectTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/fab_margin"
+            android:text="LijnHalte: "
+            />
+
+        <EditText
+            android:id="@+id/editableText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/selectTextView"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/fab_margin"
+            />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/busLayout1"
+            android:text="Selecteer halte" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
