@@ -17,9 +17,17 @@ public class SelectClass extends AppCompatActivity {
         setContentView(R.layout.activity_select_class);
 
         //2. fill spinner (thread it!)
-        Spinner s = (Spinner) findViewById(R.id.dropdown);
+        Spinner yearSpinner = (Spinner) findViewById(R.id.dropdownYear);
         String[] contents = {"1 TIN", "2 TIN", "3 TIN"};//via api of webrip
-        s.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, contents));
+        yearSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, contents));
+
+        Spinner specSpinner = (Spinner) findViewById(R.id.dropdownSpecialization);
+        String[] specContents = {"AON", "SNB", "SWM"};//via api of webrip
+        specSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, specContents));
+
+        Spinner classSpinner = (Spinner) findViewById(R.id.dropdownClass);
+        String[] classContents = {"3AONA", "3AOND", "3SNBA", "3SWMA"};//via api of webrip
+        classSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, classContents));
 
         //3. click event:
         Button b = (Button) findViewById(R.id.btn);
@@ -27,6 +35,8 @@ public class SelectClass extends AppCompatActivity {
             System.out.println("test");
             alert("you clicked me", this);
         });
+
+
 
     }
 
