@@ -9,32 +9,50 @@
     tools:showIn="@layout/activity_select_class">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="387dp"
+        android:layout_height="117dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:id="@+id/klas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="Klas:" />
+            android:text="Klas:"
+            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/dropdown"
+            />
 
         <Button
-            android:id="@+id/btn"
+            android:id="@+id/classSelectButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="Selecteer klas" />
+            android:text="Selecteer klas"
+            android:layout_alignParentTop="true"/>
 
         <Spinner
             android:id="@+id/dropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/btn"
-            android:layout_toRightOf="@id/klas" />
+            android:layout_toLeftOf="@id/classSelectButton"
+            android:layout_toRightOf="@id/klas"
+            android:layout_alignParentTop="true"/>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="Opslaan"
+            android:layout_alignParentBottom="true" />
+
     </RelativeLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

@@ -11,7 +11,9 @@ import android.widget.Spinner;
 
 public class SelectClass extends AppCompatActivity {
 
-    public static String klasNaam = "";
+    //public static String klasNaam = "";
+    public static PXLClass aClass = new PXLClass();
+    //private static Spinner s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +25,17 @@ public class SelectClass extends AppCompatActivity {
         Spinner s = (Spinner) findViewById(R.id.dropdown);
         String[] contents = {"klas 1", "klas 2", "klas 3"};//via api of webrip
         s.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, contents));
-        klasNaam = s.getSelectedItem().toString(); // klasse klas get set voor naam
 
         //3. click event:
-        Button b = (Button) findViewById(R.id.btn);
-       /* b.setOnClickListener(click -> {
-            System.out.println("test");
-            alert("you clicked me", this);
-        }); */
-        b.setOnClickListener(view -> startActivity(new Intent(SelectClass.this, MainActivity.class)));
+        Button classSelectButton = (Button) findViewById(R.id.classSelectButton);
+        classSelectButton.setOnClickListener(click -> {
+            //System.out.println("test");
+            aClass.setClassName(s.getSelectedItem().toString());
+            alert("you clicked " + aClass.getClassName(), this);
+        });
+
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(view -> startActivity(new Intent(SelectClass.this, MainActivity.class)));
     }
 
     private static void alert(String message, SelectClass context) {
