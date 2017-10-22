@@ -4,9 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,18 +20,17 @@ import java.net.URL;
  * Created by 11400136 on 22/10/2017.
  */
 
-public class ApiCallerAsync extends AsyncTask<String, Void, JSONObject> {//AsyncTask<parameter, progress variable used for updating progressbar (integer/float/...), return type>
+public abstract class ApiBaseClassAsync extends AsyncTask<String, Void, JSONObject> {//AsyncTask<parameter, progress variable used for updating progressbar (integer/float/...), return type>
     private Context context;
     private ProgressBar progressBar;
-    private TextView textView;
 
-    public ApiCallerAsync(Context context, ProgressBar progressBar, TextView textView) {
+    //Constructor:
+    public ApiBaseClassAsync(Context context, ProgressBar progressBar) {
         this.context = context;
         this.progressBar = progressBar;
-        this.textView = textView;
     }
 
-    //async task
+    //Async task:
     @Override
     protected JSONObject doInBackground(String... urls) {
         HttpURLConnection connection = null;
@@ -80,7 +77,7 @@ public class ApiCallerAsync extends AsyncTask<String, Void, JSONObject> {//Async
 
         JSONObject object = null;
 
-        //make it a json:
+        //Json-ify:
         try {
             object = new JSONObject(stringBuffer.toString());
         } catch (JSONException e) {
@@ -90,40 +87,24 @@ public class ApiCallerAsync extends AsyncTask<String, Void, JSONObject> {//Async
         return object;
     }
 
-    //before start
+    //Before:
     @Override
     protected void onPreExecute() {
-        textView.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    //when done
+    //After:
     @Override
-    protected void onPostExecute(JSONObject jsonObject) {//'result' ciomes out of doInBackground(...)
-        textView.setVisibility(View.VISIBLE);
+    protected void onPostExecute(JSONObject jsonObject) {
         progressBar.setVisibility(View.GONE);
-
-        String result = "";
-        try {
-            //should return multiple objects:
-            JSONArray jsonArray = jsonObject.getJSONArray("locations");
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                jsonObject = jsonArray.getJSONObject(i);
-
-                result += "locatie:" + jsonObject.getString("idString") + "\nx coordinaat: " + jsonObject.getString("xCoordinaat") + "\ny coordinaat: " + jsonObject.getString("yCoordinaat") + "\n\n";
-            }
-        } catch (JSONException e) {
-            result = "unparseable json string.";
-        }
-
-        textView.setText(result);
     }
 
+    //Getters:
+    public Context getContext() {
+        return context;
+    }
 
-//    @Override
-//    protected void onProgressUpdate(Void... values) {
-//        super.onProgressUpdate(values);
-//    }
-
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
 }

@@ -17,23 +17,21 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
 
-        <TextView
-            android:id="@+id/selectTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:textSize="@dimen/fab_margin"
-            android:text="LijnHalte: "
-            />
+            <TextView
+                android:id="@+id/selectTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="LijnHalte: "
+                android:textSize="@dimen/fab_margin" />
 
-        <EditText
-            android:id="@+id/editableText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/selectTextView"
-            android:layout_alignParentRight="true"
-            android:textSize="@dimen/fab_margin"
-            />
+            <EditText
+                android:id="@+id/editableText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/selectTextView"
+                android:textSize="@dimen/fab_margin" />
         </RelativeLayout>
 
         <Button
@@ -47,16 +45,15 @@
             android:id="@+id/busApiprogress1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:layout_below="@id/selectBusStop"/>
+            android:layout_below="@id/selectBusStop"
+            android:visibility="invisible" />
 
-        <TextView
-            android:id="@+id/busApiOverviewStartBus"
+        <ListView
+            android:id="@+id/busApiOverviewStartBusListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/busApiprogress1"/>
-
-
+            android:layout_below="@id/busApiprogress1" />
 
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>
