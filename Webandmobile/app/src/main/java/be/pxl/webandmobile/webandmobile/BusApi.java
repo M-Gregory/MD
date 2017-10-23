@@ -1,11 +1,16 @@
 package be.pxl.webandmobile.webandmobile;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiCoordinatesAsync;
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
@@ -37,7 +42,50 @@ public class BusApi extends AppCompatActivity {
             Intent intent = new Intent(BusApi.this, BusCoordinatesToBusRoutes.class);
             intent.putExtra("passedObject", (ApiSetupClassOne) listView.getAdapter().getItem(i));
 
+            saveData((ApiSetupClassOne) listView.getAdapter().getItem(i));
+
             startActivity(intent);
         });
+    }
+
+    private void saveData(ApiSetupClassOne item) {
+        //prepare storage variables:
+        Context context = getApplicationContext();
+        SharedPreferences preferences = context.getSharedPreferences("busApi", context.MODE_PRIVATE);
+        SharedPreferences.Editor preferencesEditor = preferences.edit();
+
+        //clear out old data:
+        preferencesEditor.clear();//clear out previous data!
+
+        //add xcoord and ycoord to keyset
+        preferencesEditor.putInt( "busXCoord",item.getxCoord() );
+        preferencesEditor.putInt( "busYCoord",item.getyCoord() );
+        preferencesEditor.commit();
+
+        //int x = preferences.getInt("busXCoord", 0);//0=fallback value
+        //int y = preferences.getInt("busYCoord", 0);//0=fallback value
+
+
+
+
+
+
+        //====================================================================================
+        //informative purposes only:
+        //--------------------------
+        //you can use a set like this:
+        //add:
+        //----
+        //Set<String> mySet = new HashSet<>();
+        //mySet.add("string value 1");
+        //mySet.add("string value 2");
+        //preferencesEditor.putStringSet("busApiCoordinates", mySet);//add to local storage:
+
+        //get:
+        //----
+        //Object o = preferences.getAll();
+        //o = preferences.getInt("busXCoord", 0);
+        //o = preferences.getStringSet("busApiCoordinates", new HashSet<>());
+        //====================================================================================
     }
 }
