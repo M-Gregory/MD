@@ -22,7 +22,6 @@ import be.pxl.webandmobile.webandmobile.beans.ApiClassesAsync;
 
 public class SelectClass extends AppCompatActivity {
     private boolean started;
-    private boolean classSelected;
     private boolean specSelected;
     private Spinner yearSpinner;
     private Spinner specSpinner;
