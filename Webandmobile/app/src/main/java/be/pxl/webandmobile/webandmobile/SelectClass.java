@@ -11,8 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+
+import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
+import be.pxl.webandmobile.webandmobile.beans.ApiClassesAsync;
 
 public class SelectClass extends AppCompatActivity {
     private boolean started;
@@ -24,17 +28,15 @@ public class SelectClass extends AppCompatActivity {
     private View specializationLayout;
     private View classLayout;
     private String[] classContents;
-    private LessenroosterAPI api;
+    private ApiBaseClassAsync api;
     private Button button;
-
-    //TODO: Progressbar tijdens het inladen van klassen (3e spinner) tonen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //1. default:
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_class);
-        api = new LessenroosterAPI();
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //2. fill spinner (thread it!)
         yearSpinner = (Spinner) findViewById(R.id.dropdownYear);
@@ -48,11 +50,13 @@ public class SelectClass extends AppCompatActivity {
         classSpinner = (Spinner) findViewById(R.id.dropdownClass);
         classContents = new String[]{"", "", "", ""};//via api of webrip
         classSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, classContents));
+        api = new ApiClassesAsync(SelectClass.this, classSpinner,progressBar);
 
         classLayout = findViewById(R.id.relativeClass);
         specializationLayout = findViewById(R.id.relativeSpecialization);
 
         //3. click event:
+        //TODO: cachen van de geselecteerde klas
         button = (Button) findViewById(R.id.btn);
         button.setOnClickListener(click -> {
             alert("Selecteer klas " + classSpinner.getSelectedItem().toString() + "?", this);
@@ -78,11 +82,7 @@ public class SelectClass extends AppCompatActivity {
                     } else {
                         //call http://data.pxl.be/roosters/v1/klassen/xTIN (1 of 2)
                         //vul classSpinner met de klassen vd json
-                        classContents = api.getClasses(yearSpinner.getSelectedItem().toString());
-                        ((BaseAdapter) classSpinner.getAdapter()).notifyDataSetChanged();
-                        classSpinner.invalidate();
-                        classSpinner.setSelection(0);
-                        classLayout.setVisibility(View.VISIBLE);
+                        api.execute("http://data.pxl.be/roosters/v1/klassen/" + selected);
                     }
                 } else {
                     started = true;
@@ -95,16 +95,12 @@ public class SelectClass extends AppCompatActivity {
             }
         });
 
+        //Selecteer hier de afstudeerrichting vann het derde jaar, (AON, SNB, SWM)
         specSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(specSelected) {
-                    classContents = api.getClasses(specSpinner.getSelectedItem().toString());
-                    ((BaseAdapter) classSpinner.getAdapter()).notifyDataSetChanged();
-                    classSpinner.invalidate();
-                    classSpinner.setSelection(0);
-
-                    classLayout.setVisibility(View.VISIBLE);
+                    api.execute("http://data.pxl.be/roosters/v1/klassen/3" + specSpinner.getSelectedItem().toString());
                 } else {
                     specSelected = true;
                 }
@@ -116,6 +112,7 @@ public class SelectClass extends AppCompatActivity {
             }
         });
 
+        //Kies hier tussen de klassen, deze worden opgehaald door de api
         classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
