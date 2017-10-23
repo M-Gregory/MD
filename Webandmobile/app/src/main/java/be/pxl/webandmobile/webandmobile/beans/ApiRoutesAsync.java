@@ -43,6 +43,8 @@ public class ApiRoutesAsync extends ApiBaseClassAsync {
             //should return multiple objects:
             JSONArray jsonArray = jsonObject.getJSONArray("reiswegen");
             StringBuilder sb = new StringBuilder();
+            sb.append("Gevonden ritten:\n\n");
+            sb.append("");
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 jsonObject = jsonArray.getJSONObject(i);
