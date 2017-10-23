@@ -1,12 +1,15 @@
 package be.pxl.webandmobile.webandmobile;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.solver.Cache;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -20,7 +23,9 @@ public class SelectClass extends AppCompatActivity {
     private Spinner classSpinner;
     private View specializationLayout;
     private View classLayout;
+    private String[] classContents;
     private LessenroosterAPI api;
+    private Button button;
 
     //TODO: Progressbar tijdens het inladen van klassen (3e spinner) tonen
 
@@ -29,6 +34,7 @@ public class SelectClass extends AppCompatActivity {
         //1. default:
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_class);
+        api = new LessenroosterAPI();
 
         //2. fill spinner (thread it!)
         yearSpinner = (Spinner) findViewById(R.id.dropdownYear);
@@ -40,17 +46,16 @@ public class SelectClass extends AppCompatActivity {
         specSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, specContents));
 
         classSpinner = (Spinner) findViewById(R.id.dropdownClass);
-        String[] classContents = {"3AONA", "3AOND", "3SNBA", "3SWMA"};//via api of webrip
+        classContents = new String[]{"", "", "", ""};//via api of webrip
         classSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, classContents));
 
         classLayout = findViewById(R.id.relativeClass);
         specializationLayout = findViewById(R.id.relativeSpecialization);
 
         //3. click event:
-        Button b = (Button) findViewById(R.id.btn);
-        b.setOnClickListener(click -> {
-            System.out.println("test");
-            alert("you clicked me", this);
+        button = (Button) findViewById(R.id.btn);
+        button.setOnClickListener(click -> {
+            alert("Selecteer klas " + classSpinner.getSelectedItem().toString() + "?", this);
         });
     }
 
@@ -63,14 +68,22 @@ public class SelectClass extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(started) {
                     String selected = yearSpinner.getSelectedItem().toString();
+                    //Zodat je altijd enkel begint met de eerste dropdown,
+                    // ook na het selecteren van een klas en daarna een nieuw jaar te kiezen
+                    specializationLayout.setVisibility(View.GONE);
+                    classLayout.setVisibility(View.GONE);
 
                     if(selected.startsWith("3")) {
                         specializationLayout.setVisibility(View.VISIBLE);
                     } else {
-                        specializationLayout.setVisibility(View.GONE);
+                        //call http://data.pxl.be/roosters/v1/klassen/xTIN (1 of 2)
+                        //vul classSpinner met de klassen vd json
+                        classContents = api.getClasses(yearSpinner.getSelectedItem().toString());
+                        ((BaseAdapter) classSpinner.getAdapter()).notifyDataSetChanged();
+                        classSpinner.invalidate();
+                        classSpinner.setSelection(0);
+                        classLayout.setVisibility(View.VISIBLE);
                     }
-
-                    classLayout.setVisibility(View.VISIBLE);
                 } else {
                     started = true;
                 }
@@ -86,9 +99,12 @@ public class SelectClass extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(specSelected) {
-                    String selected = specSpinner.getSelectedItem().toString();
+                    classContents = api.getClasses(specSpinner.getSelectedItem().toString());
+                    ((BaseAdapter) classSpinner.getAdapter()).notifyDataSetChanged();
+                    classSpinner.invalidate();
+                    classSpinner.setSelection(0);
+
                     classLayout.setVisibility(View.VISIBLE);
-                    alert(selected, SelectClass.this);
                 } else {
                     specSelected = true;
                 }
@@ -103,11 +119,7 @@ public class SelectClass extends AppCompatActivity {
         classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(classSelected) {
-
-                } else {
-                    classSelected = true;
-                }
+                button.setEnabled(true);
             }
 
             @Override

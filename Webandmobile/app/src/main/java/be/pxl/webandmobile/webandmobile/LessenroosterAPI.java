@@ -13,16 +13,17 @@ import java.net.URL;
  */
 
 public class LessenroosterAPI extends AsyncTask<Void, Void, String>{
-    public void getClasses(String jaar) {
+    public String[] getClasses(String jaar) {
         //haalt alle klassen op van het gekozen jaar/richting
         //1TIN, 2TIN, 3AON, 3SNB of 3 SWM
+        
 
-        if(!jaar.startsWith("3")) {
-            jaar = jaar.replace(" ", "");
-            //doInBackground(jaar);
-        } else {
-            
-        }
+
+
+
+        String[] test = {"", ""};
+
+        return test;
     }
 
     public void getSpecClasses() {
