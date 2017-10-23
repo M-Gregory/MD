@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import be.pxl.webandmobile.webandmobile.R;
@@ -19,7 +20,7 @@ import be.pxl.webandmobile.webandmobile.R;
  */
 
 //Gets the classes from the selected year/specialization
-public class ApiClassesAsync extends ApiBaseClassAsync {
+public class ApiClassesAsync extends ApiBaseScheduleAsync {
     private Spinner spinner;
 
     public ApiClassesAsync(Context context, Spinner spinner, ProgressBar progressBar) {
@@ -38,20 +39,20 @@ public class ApiClassesAsync extends ApiBaseClassAsync {
         super.onPostExecute(jsonArray);
         spinner.setVisibility(View.VISIBLE);
 
-        //verwerk klasses in de spinner en updaten
-            List<String> classList = null;
+        //verwerk klasses in de spinner
+            List<String> classList = new ArrayList<>();
 
             try {
                 for(int i = 0; i < jsonArray.length(); i++) {
                     JSONObject classInfo = jsonArray.getJSONObject(i);
                     String tempClass = classInfo.getString("klas");
                     classList.add(tempClass);
-
-                    spinner.setAdapter(new ArrayAdapter<String>(super.getContext(), R.layout.support_simple_spinner_dropdown_item, classList));
                 }
 
             } catch (JSONException e) {
-                //handle error
+                classList = null;
             }
+
+        spinner.setAdapter(new ArrayAdapter<String>(super.getContext(), R.layout.support_simple_spinner_dropdown_item, classList));
     }
 }

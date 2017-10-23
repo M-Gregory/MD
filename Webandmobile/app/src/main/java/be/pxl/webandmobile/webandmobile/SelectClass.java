@@ -2,6 +2,7 @@ package be.pxl.webandmobile.webandmobile;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.constraint.solver.Cache;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
+import be.pxl.webandmobile.webandmobile.beans.ApiBaseScheduleAsync;
 import be.pxl.webandmobile.webandmobile.beans.ApiClassesAsync;
 
 public class SelectClass extends AppCompatActivity {
@@ -28,7 +30,7 @@ public class SelectClass extends AppCompatActivity {
     private View specializationLayout;
     private View classLayout;
     private String[] classContents;
-    private ApiBaseClassAsync api;
+    private ApiBaseScheduleAsync api;
     private Button button;
 
     @Override
@@ -50,7 +52,7 @@ public class SelectClass extends AppCompatActivity {
         classSpinner = (Spinner) findViewById(R.id.dropdownClass);
         classContents = new String[]{"", "", "", ""};//via api of webrip
         classSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, classContents));
-        api = new ApiClassesAsync(SelectClass.this, classSpinner,progressBar);
+        api = new ApiClassesAsync(SelectClass.this, classSpinner, progressBar);
 
         classLayout = findViewById(R.id.relativeClass);
         specializationLayout = findViewById(R.id.relativeSpecialization);
@@ -126,7 +128,7 @@ public class SelectClass extends AppCompatActivity {
         });
     }
 
-    private static void alert(String message, SelectClass context) {
+    private void alert(String message, SelectClass context) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
         builder1.setMessage(message);
         builder1.setCancelable(true);
@@ -135,7 +137,21 @@ public class SelectClass extends AppCompatActivity {
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        //save class in sharedpreferences
+                        SharedPreferences preferences = context.getSharedPreferences("classApi", context.MODE_PRIVATE);
+                        SharedPreferences.Editor preferencesEditor = preferences.edit();
+
+                        //clear out old data:
+                        preferencesEditor.clear();//clear out previous data!
+
+                        //add class to keyset
+                        preferencesEditor.putString( "class", classSpinner.getSelectedItem().toString());
+                        preferencesEditor.commit();
+
                         dialog.cancel();
+                        Intent i=new Intent(SelectClass.this, MainActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
                     }
                 });
 
