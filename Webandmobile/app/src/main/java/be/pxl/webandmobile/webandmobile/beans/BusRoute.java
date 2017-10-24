@@ -17,6 +17,7 @@ public class BusRoute {
 
     private String[] baseRouteUrlParameters = new String[13];
     private boolean isToSchool;
+    private String busName = "startPoint";
 
     //constructor
     public BusRoute() {
@@ -43,6 +44,10 @@ public class BusRoute {
         this.baseRouteUrlParameters[5] = String.valueOf(yCoord);
     }
 
+    public void setBusStop(String busStop) {
+        this.busName = busStop;
+    }
+
     public void setDateAndTime(Date date) {
         String[] data = (new SimpleDateFormat("dd-MM-yyyy HH:mm").format(date)).split(" ");
 
@@ -52,7 +57,7 @@ public class BusRoute {
 
     public void isArrivaltime(boolean arrival) {
         if (arrival) {
-            this.baseRouteUrlParameters[8] = "2";
+            this.baseRouteUrlParameters[8] = "2";//hit here
         } else {
             this.baseRouteUrlParameters[8] = "1";
         }
@@ -61,19 +66,32 @@ public class BusRoute {
     public void setToSchool(boolean isToSchool) {
         this.isToSchool = isToSchool;
 
-        if (isToSchool)
-            baseRouteUrlParameters[0] = "userStop";
-        else
-            baseRouteUrlParameters[1] = "userStop";
+
     }
 
     public String generateUrl() throws IllegalArgumentException {
         String result;
 
+        if (baseRouteUrlParameters[0] == null || baseRouteUrlParameters[1] == null || baseRouteUrlParameters[2] == null || baseRouteUrlParameters[3] == null || baseRouteUrlParameters[4] == null || baseRouteUrlParameters[5] == null) {
+            if (isToSchool) {
+                baseRouteUrlParameters[0] = busName;
+                baseRouteUrlParameters[1] = pxlStopName;
+
+                baseRouteUrlParameters[2] = xCoordPxl;
+                baseRouteUrlParameters[3] = yCoordPxl;
+            } else {
+                baseRouteUrlParameters[0] = pxlStopName;
+                baseRouteUrlParameters[1] = busName;
+
+                baseRouteUrlParameters[2] = baseRouteUrlParameters[4];
+                baseRouteUrlParameters[3] = baseRouteUrlParameters[5];
+                baseRouteUrlParameters[4] = xCoordPxl;
+                baseRouteUrlParameters[5] = yCoordPxl;
+            }
+        }
+
         //Rebuild based on direction of route:
         if (isToSchool) {
-            baseRouteUrlParameters[1] = pxlStopName;
-
             if (!baseRouteUrlParameters[4].equals(xCoordPxl)) {
                 baseRouteUrlParameters[2] = baseRouteUrlParameters[4];
                 baseRouteUrlParameters[4] = xCoordPxl;
@@ -84,8 +102,6 @@ public class BusRoute {
                 baseRouteUrlParameters[5] = yCoordPxl;
             }
         } else {
-            baseRouteUrlParameters[0] = pxlStopName;
-
             if (!baseRouteUrlParameters[2].equals(xCoordPxl)) {
                 baseRouteUrlParameters[4] = baseRouteUrlParameters[2];
                 baseRouteUrlParameters[2] = xCoordPxl;

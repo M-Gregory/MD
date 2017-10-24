@@ -1,6 +1,8 @@
 package be.pxl.webandmobile.webandmobile;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,11 +16,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //2. custom:
-        TitleClass.initialise(getTitle().toString());//init only once!
-
-        //2.1 fill in class:
-        String selectedClass = "???";
-        setTitle(TitleClass.getCustomisedTitle(selectedClass));
+        //Set Title:
+        setupTitle();//TODO: get class and buss...
 
         //3.2: click event
         //3.2.1: select class:
@@ -35,10 +34,31 @@ public class MainActivity extends AppCompatActivity {
 
         //3.3.1: bus main
         Button busApiButton = (Button) findViewById(R.id.busApiButton);
-        busApiButton.setOnClickListener(view->startActivity(new Intent(MainActivity.this, BusApi.class)));
+        busApiButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BusApi.class)));
 
         //3.3.2 bus test
-        Button busApiTestButton = (Button)findViewById(R.id.busApiTestButton);
-        busApiTestButton.setOnClickListener(view->startActivity(new Intent(MainActivity.this, BusApiTest.class)));
+        Button busApiTestButton = (Button) findViewById(R.id.busApiTestButton);
+        busApiTestButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BusApiTest.class)));
+    }
+
+    private void setupTitle() {
+        Context context = getApplicationContext();
+        SharedPreferences classPreferences = context.getSharedPreferences("class", context.MODE_PRIVATE);
+        SharedPreferences busPreferences = context.getSharedPreferences("busApi", context.MODE_PRIVATE);
+
+        String selectedClass = classPreferences.getString("className", "");
+        String selectedBus = busPreferences.getString("busName", "");
+
+        String add = "";
+
+        if (!selectedClass.equals("")) {
+            add += "Klas: " + selectedClass;
+        }
+
+        if (!selectedBus.equals("")) {
+            add += " Bus: " + selectedBus;
+        }
+
+        setTitle(getTitle()+"; " + add.trim());
     }
 }

@@ -52,6 +52,7 @@ public class BusApi extends AppCompatActivity {
         preferencesEditor.clear();//clear out previous data!
 
         //add xcoord and ycoord to keyset
+        preferencesEditor.putString("busName", item.getName());
         preferencesEditor.putInt("busXCoord", item.getxCoord());
         preferencesEditor.putInt("busYCoord", item.getyCoord());
         preferencesEditor.commit();

@@ -41,6 +41,7 @@ public class BusApiTest extends AppCompatActivity {
         Context context = getApplicationContext();
         SharedPreferences preferences = context.getSharedPreferences("busApi", context.MODE_PRIVATE);
 
+        String stopName = preferences.getString("busName", "startPoint");
         int xCoordinate = preferences.getInt("busXCoord", 0);
         int yCoordinate = preferences.getInt("busYCoord", 0);
 
@@ -53,13 +54,20 @@ public class BusApiTest extends AppCompatActivity {
 
         //opstellen busroute:
         BusRoute myBusRoute = new BusRoute();
+        myBusRoute.setBusStop(stopName);
         myBusRoute.setDateAndTime(d);
         myBusRoute.setDestX(xCoordinate);
         myBusRoute.setDestY(yCoordinate);
-        myBusRoute.setToSchool(true);//naar school, false indien naar huis
+
+        myBusRoute.setToSchool(true);//to school, false when going home!!!
         myBusRoute.isArrivaltime(true);//you wish to be at school at: 20-11-2017 12:45u -> false would be you start you're trip at 20-11-2017 12:45u
 
         //return url:
+        String t1 = myBusRoute.generateUrl();
+        String t2 = myBusRoute.generateUrl();
+
+        boolean test = t1.equals(t2);
+
         return myBusRoute.generateUrl();//throws 'IllegalArgumentException'!
     }
 

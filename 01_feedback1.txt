@@ -4,14 +4,3 @@ google api: sync met kalender
 draai screen -> visuals (libraries/api)
 bus uren (pxl->corda->pxl)
 caching (geen netwerk)
-
-=========================================
-Taakverdeling:
--------------
-Gregory:	delijn.api (ophalen busuren)
-rené:		pxl api (ophalen data)
-Daan:		functionaliteit knoppen versie 1
-
-[optioneel:] sync met kalender (api zoeken)
-scraping (jsoup zit reeds in project (zie "https://www.youtube.com/watch?v=x-VmYZGPnWc" voor extra details)
-kalender api
