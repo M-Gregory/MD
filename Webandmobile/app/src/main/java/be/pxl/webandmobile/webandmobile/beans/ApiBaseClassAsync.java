@@ -20,7 +20,7 @@ import java.net.URL;
  * Created by 11400136 on 22/10/2017.
  */
 
-public abstract class ApiBaseClassAsync extends AsyncTask<String, Void, JSONObject> {//AsyncTask<parameter, progress variable used for updating progressbar (integer/float/...), return type>
+public abstract class ApiBaseClassAsync extends AsyncTask<String, Void, String> {//AsyncTask<parameter, progress variable used for updating progressbar (integer/float/...), return type>
     private Context context;
     private ProgressBar progressBar;
 
@@ -32,7 +32,7 @@ public abstract class ApiBaseClassAsync extends AsyncTask<String, Void, JSONObje
 
     //Async task:
     @Override
-    protected JSONObject doInBackground(String... urls) {
+    protected String doInBackground(String... urls) {
         HttpURLConnection connection = null;
         BufferedReader reader = null;
         StringBuilder stringBuffer = null;
@@ -77,14 +77,7 @@ public abstract class ApiBaseClassAsync extends AsyncTask<String, Void, JSONObje
 
         JSONObject object = null;
 
-        //Json-ify:
-        try {
-            object = new JSONObject(stringBuffer.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return object;
+        return stringBuffer.toString();
     }
 
     //Before:
@@ -95,7 +88,7 @@ public abstract class ApiBaseClassAsync extends AsyncTask<String, Void, JSONObje
 
     //After:
     @Override
-    protected void onPostExecute(JSONObject jsonObject) {
+    protected void onPostExecute(String passedString) {
         progressBar.setVisibility(View.GONE);
     }
 

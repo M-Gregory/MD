@@ -34,12 +34,13 @@ public class ApiRoutesAsync extends ApiBaseClassAsync {
 
     //After:
     @Override
-    protected void onPostExecute(JSONObject jsonObject) {//'result' ciomes out of doInBackground(...) (look at ApiBaseClassAsync!)
-        super.onPostExecute(jsonObject);
-
+    protected void onPostExecute(String passedString) {//'result' ciomes out of doInBackground(...) (look at ApiBaseClassAsync!)
+        JSONObject jsonObject = null;
         ArrayList<ApiSetupClassOne> list = new ArrayList<>();
 
         try {
+            jsonObject = new JSONObject(passedString);
+
             //should return multiple objects:
             JSONArray jsonArray = jsonObject.getJSONArray("reiswegen");
             StringBuilder sb = new StringBuilder();
@@ -48,7 +49,7 @@ public class ApiRoutesAsync extends ApiBaseClassAsync {
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 jsonObject = jsonArray.getJSONObject(i);
-                sb.append("Aankomst datum: "+ jsonObject.getString("endDate") +" - vertrek: " + jsonObject.getString("startTime") + " - duur: " + jsonObject.getString("duration") + " - aandomst: " + jsonObject.getString("endTime") + " - overstappen: " + jsonObject.getString("overstappen") + " - heeft omleiding: " + jsonObject.getString("heeftOmleidingen") + "\n\n");
+                sb.append("Aankomst datum: " + jsonObject.getString("endDate") + " - vertrek: " + jsonObject.getString("startTime") + " - duur: " + jsonObject.getString("duration") + " - aandomst: " + jsonObject.getString("endTime") + " - overstappen: " + jsonObject.getString("overstappen") + " - heeft omleiding: " + jsonObject.getString("heeftOmleidingen") + "\n\n");
             }
 
             textView.setText(sb.toString());

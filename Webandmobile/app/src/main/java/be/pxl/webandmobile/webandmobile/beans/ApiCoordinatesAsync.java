@@ -35,15 +35,16 @@ public class ApiCoordinatesAsync extends ApiBaseClassAsync {
 
     //After:
     @Override
-    protected void onPostExecute(JSONObject jsonObject) {//'result' ciomes out of doInBackground(...) (look at ApiBaseClassAsync!)
-        super.onPostExecute(jsonObject);
-
+    protected void onPostExecute(String passedString) {//'result' ciomes out of doInBackground(...) (look at ApiBaseClassAsync!)
+        super.onPostExecute(passedString);
         listView.setVisibility(View.VISIBLE);
 
+        JSONObject jsonObject = null;
         ArrayList<ApiSetupClassOne> list = new ArrayList<>();
 
         try {
             //should return multiple objects:
+            jsonObject = new JSONObject(passedString);
             JSONArray jsonArray = jsonObject.getJSONArray("locations");
 
             for (int i = 0; i < jsonArray.length(); i++) {
