@@ -26,10 +26,10 @@ public class ApiRoutesAsync extends ApiBaseClassAsync {
     //Before:
     @Override
     protected void onPreExecute() {
-        textView.setText("");
-        textView.setVisibility(TextView.GONE);
+        //textView.setText("");
+        //textView.setVisibility(TextView.GONE);
 
-        super.getProgressBar().setVisibility(TextView.VISIBLE);
+        super.onPreExecute();
     }
 
     //After:
@@ -44,15 +44,30 @@ public class ApiRoutesAsync extends ApiBaseClassAsync {
             //should return multiple objects:
             JSONArray jsonArray = jsonObject.getJSONArray("reiswegen");
             StringBuilder sb = new StringBuilder();
-            sb.append("Gevonden ritten:\n\n");
-            sb.append("");
+            //sb.append("Gevonden ritten:\n\n");
+            //sb.append("");
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 jsonObject = jsonArray.getJSONObject(i);
-                sb.append("Aankomst datum: " + jsonObject.getString("endDate") + " - vertrek: " + jsonObject.getString("startTime") + " - duur: " + jsonObject.getString("duration") + " - aandomst: " + jsonObject.getString("endTime") + " - overstappen: " + jsonObject.getString("overstappen") + " - heeft omleiding: " + jsonObject.getString("heeftOmleidingen") + "\n\n");
+                //sb.append("Aankomst datum: " + jsonObject.getString("endDate"));
+                //sb.append("Vertrek: " + jsonObject.getString("startTime"));
+                //sb.append("\n");
+                //sb.append("Duur: " + jsonObject.getString("duration"));
+                //sb.append("\n");
+                //sb.append("Aandomst: " + jsonObject.getString("endTime"));
+                //sb.append("\n");
+                //sb.append("Overstappen: " + jsonObject.getString("overstappen"));
+                //sb.append("\n");
+                //sb.append("Omleiding: " + jsonObject.getString("heeftOmleidingen"));
+
+
+                sb.append(jsonObject.getString("startTime"));
+                sb.append("\n");
+                sb.append(jsonObject.getString("endTime"));
+                sb.append("      \n\n");
             }
 
-            textView.setText(sb.toString());
+            textView.setText(sb.toString().trim());
 
             if (jsonArray.length() <= 0) {
                 textView.setText("Geen reis met de bus mogelijk.");
@@ -63,7 +78,7 @@ public class ApiRoutesAsync extends ApiBaseClassAsync {
             textView.setText("Error parsing json...");
         }
 
-        textView.setVisibility(TextView.VISIBLE);
-        super.getProgressBar().setVisibility(TextView.GONE);
+        //textView.setVisibility(TextView.VISIBLE);
+        super.onPostExecute(passedString);
     }
 }

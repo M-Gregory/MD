@@ -12,7 +12,6 @@ public class BusRoute {
     private final String pxlStopName = "Halte Hasselt Zwembad (403430)";
     private final String xCoordPxl = "218786";
     private final String yCoordPxl = "181067";
-    private final int amountOfResults = 5;
     private final String baseRouteUrl = "https://www.delijn.be/rise-api-core/reisadvies/routes/{startPoint}/{endPoint}/{startX}/{startY}/{endX}/{endY}/{date}/{time}/{arrivalDeparture}/{byBus}/{byTram}/{byMetro}/{byTrain}/off/nl";
 
     private String[] baseRouteUrlParameters = new String[13];
@@ -57,7 +56,7 @@ public class BusRoute {
 
     public void isArrivaltime(boolean arrival) {
         if (arrival) {
-            this.baseRouteUrlParameters[8] = "2";//hit here
+            this.baseRouteUrlParameters[8] = "2";
         } else {
             this.baseRouteUrlParameters[8] = "1";
         }
@@ -134,7 +133,6 @@ public class BusRoute {
         result = result.replace("{byTram}", baseRouteUrlParameters[10]);
         result = result.replace("{byMetro}", baseRouteUrlParameters[11]);
         result = result.replace("{byTrain}", baseRouteUrlParameters[12]);
-
 
         return result;
     }

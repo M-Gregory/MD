@@ -63,10 +63,9 @@ public class BusApiTest extends AppCompatActivity {
         myBusRoute.isArrivaltime(true);//you wish to be at school at: 20-11-2017 12:45u -> false would be you start you're trip at 20-11-2017 12:45u
 
         //return url:
-        String t1 = myBusRoute.generateUrl();
-        String t2 = myBusRoute.generateUrl();
-
-        boolean test = t1.equals(t2);
+        //String t1 = myBusRoute.generateUrl();
+        //String t2 = myBusRoute.generateUrl();
+        //boolean test = t1.equals(t2);
 
         return myBusRoute.generateUrl();//throws 'IllegalArgumentException'!
     }

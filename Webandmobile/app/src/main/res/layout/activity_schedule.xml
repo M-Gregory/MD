@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,9 +31,7 @@
 
                     <TableRow android:background="@android:color/holo_green_light">
 
-                        <TextView
-                            android:layout_width="80dp"
-                            android:text="08:30" />
+                        <TextView android:layout_width="80dp" />
 
                         <TextView
                             android:padding="5dp"
@@ -56,13 +53,6 @@
                             android:padding="5dp"
                             android:text="Vr" />
 
-                        <TextView
-                            android:padding="5dp"
-                            android:text="Za" />
-
-                        <TextView
-                            android:padding="5dp"
-                            android:text="Zo" />
                     </TableRow>
 
                     <TableRow
@@ -71,50 +61,30 @@
 
                         <TextView android:text="Bus:" />
 
-                        <EditText
-                            android:id="@+id/maandagBusToSchool"
-                            android:text="Bus to school 1" />
+                        <TextView android:id="@+id/maandagBusToSchool"/>
 
-                        <EditText
-                            android:id="@+id/dinsdagBusToSchool"
-                            android:text="Bus to school 2" />
+                        <TextView android:id="@+id/dinsdagBusToSchool" />
 
-                        <EditText
-                            android:id="@+id/woensdagBusToSchool"
-                            android:text="Bus to school 3" />
+                        <TextView android:id="@+id/woensdagBusToSchool" />
 
-                        <EditText
-                            android:id="@+id/donderdagBusToSchool"
-                            android:text="Bus to school 4" />
+                        <TextView android:id="@+id/donderdagBusToSchool" />
 
-                        <EditText
-                            android:id="@+id/vrijdagBusToSchool"
-                            android:text="Bus to school 5" />
+                        <TextView android:id="@+id/vrijdagBusToSchool" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
-                        <TextView android:text="09:30" />
+                        <TextView android:text="08:30" />
 
-                        <EditText
-                            android:id="@+id/maandag1"
-                            android:text="les maandag 01" />
+                        <EditText android:id="@+id/maandag1" />
 
-                        <EditText
-                            android:id="@+id/dinsdag1"
-                            android:text="les dinsdag 01" />
+                        <EditText android:id="@+id/dinsdag1" />
 
-                        <EditText
-                            android:id="@+id/woensdag1"
-                            android:text="les woendsag 01" />
+                        <EditText android:id="@+id/woensdag1" />
 
-                        <EditText
-                            android:id="@+id/donderdag1"
-                            android:text="les donderdag 01" />
+                        <EditText android:id="@+id/donderdag1" />
 
-                        <EditText
-                            android:id="@+id/vrijdag1"
-                            android:text="les vrijdag 01" />
+                        <EditText android:id="@+id/vrijdag1" />
                     </TableRow>
 
                     <TableRow
@@ -123,50 +93,30 @@
 
                         <TextView android:text="09:30" />
 
-                        <EditText
-                            android:id="@+id/maandag2"
-                            android:text="les maandag 02" />
+                        <EditText android:id="@+id/maandag2" />
 
-                        <EditText
-                            android:id="@+id/dinsdag2"
-                            android:text="les dinsdag 02" />
+                        <EditText android:id="@+id/dinsdag2" />
 
-                        <EditText
-                            android:id="@+id/woensdag2"
-                            android:text="les woendsag 02" />
+                        <EditText android:id="@+id/woensdag2"  />
 
-                        <EditText
-                            android:id="@+id/donderdag2"
-                            android:text="les donderdag 02" />
+                        <EditText android:id="@+id/donderdag2" />
 
-                        <EditText
-                            android:id="@+id/vrijdag2"
-                            android:text="les vrijdag 02" />
+                        <EditText android:id="@+id/vrijdag2" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="11:30" />
 
-                        <EditText
-                            android:id="@+id/maandag3"
-                            android:text="les maandag 03" />
+                        <EditText android:id="@+id/maandag3" />
 
-                        <EditText
-                            android:id="@+id/dinsdag3"
-                            android:text="les dinsdag 03" />
+                        <EditText android:id="@+id/dinsdag3" />
 
-                        <EditText
-                            android:id="@+id/woensdag3"
-                            android:text="les woendsag 03" />
+                        <EditText android:id="@+id/woensdag3" />
 
-                        <EditText
-                            android:id="@+id/donderdag3"
-                            android:text="les donderdag 03" />
+                        <EditText android:id="@+id/donderdag3" />
 
-                        <EditText
-                            android:id="@+id/vrijdag3"
-                            android:text="les vrijdag 03" />
+                        <EditText android:id="@+id/vrijdag3" />
                     </TableRow>
 
                     <TableRow
@@ -175,50 +125,30 @@
 
                         <TextView android:text="12:30" />
 
-                        <EditText
-                            android:id="@+id/maandag4"
-                            android:text="les maandag 04" />
+                        <EditText android:id="@+id/maandag4" />
 
-                        <EditText
-                            android:id="@+id/dinsdag4"
-                            android:text="les dinsdag 04" />
+                        <EditText android:id="@+id/dinsdag4" />
 
-                        <EditText
-                            android:id="@+id/woensdag4"
-                            android:text="les woendsag 04" />
+                        <EditText android:id="@+id/woensdag4" />
 
-                        <EditText
-                            android:id="@+id/donderdag4"
-                            android:text="les donderdag 04" />
+                        <EditText android:id="@+id/donderdag4" />
 
-                        <EditText
-                            android:id="@+id/vrijdag4"
-                            android:text="les vrijdag 04" />
+                        <EditText android:id="@+id/vrijdag4" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="13:30" />
 
-                        <EditText
-                            android:id="@+id/maandag5"
-                            android:text="les maandag 05" />
+                        <EditText android:id="@+id/maandag5" />
 
-                        <EditText
-                            android:id="@+id/dinsdag5"
-                            android:text="les dinsdag 05" />
+                        <EditText android:id="@+id/dinsdag5" />
 
-                        <EditText
-                            android:id="@+id/woensdag5"
-                            android:text="les woendsag 05" />
+                        <EditText android:id="@+id/woensdag5" />
 
-                        <EditText
-                            android:id="@+id/donderdag5"
-                            android:text="les donderdag 05" />
+                        <EditText android:id="@+id/donderdag5" />
 
-                        <EditText
-                            android:id="@+id/vrijdag5"
-                            android:text="les vrijdag 05" />
+                        <EditText android:id="@+id/vrijdag5" />
                     </TableRow>
 
                     <TableRow
@@ -227,50 +157,30 @@
 
                         <TextView android:text="14:30" />
 
-                        <EditText
-                            android:id="@+id/maandag6"
-                            android:text="les maandag 06" />
+                        <EditText android:id="@+id/maandag6" />
 
-                        <EditText
-                            android:id="@+id/dinsdag6"
-                            android:text="les dinsdag 06" />
+                        <EditText android:id="@+id/dinsdag6" />
 
-                        <EditText
-                            android:id="@+id/woensdag6"
-                            android:text="les woendsag 06" />
+                        <EditText android:id="@+id/woensdag6" />
 
-                        <EditText
-                            android:id="@+id/donderdag6"
-                            android:text="les donderdag 06" />
+                        <EditText android:id="@+id/donderdag6" />
 
-                        <EditText
-                            android:id="@+id/vrijdag6"
-                            android:text="les vrijdag 06" />
+                        <EditText android:id="@+id/vrijdag6" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="15:30" />
 
-                        <EditText
-                            android:id="@+id/maandag7"
-                            android:text="les maandag 07" />
+                        <EditText android:id="@+id/maandag7" />
 
-                        <EditText
-                            android:id="@+id/dinsdag7"
-                            android:text="les dinsdag 07" />
+                        <EditText android:id="@+id/dinsdag7" />
 
-                        <EditText
-                            android:id="@+id/woensdag7"
-                            android:text="les woendsag 07" />
+                        <EditText android:id="@+id/woensdag7" />
 
-                        <EditText
-                            android:id="@+id/donderdag7"
-                            android:text="les donderdag 07" />
+                        <EditText android:id="@+id/donderdag7" />
 
-                        <EditText
-                            android:id="@+id/vrijdag7"
-                            android:text="les vrijdag 07" />
+                        <EditText android:id="@+id/vrijdag7" />
                     </TableRow>
 
                     <TableRow
@@ -279,77 +189,30 @@
 
                         <TextView android:text="16:30" />
 
-                        <EditText
-                            android:id="@+id/maandag8"
-                            android:text="les maandag 08" />
+                        <EditText android:id="@+id/maandag8" />
 
-                        <EditText
-                            android:id="@+id/dinsdag8"
-                            android:text="les dinsdag 08" />
+                        <EditText android:id="@+id/dinsdag8" />
 
-                        <EditText
-                            android:id="@+id/woensdag8"
-                            android:text="les woendsag 08" />
+                        <EditText android:id="@+id/woensdag8" />
 
-                        <EditText
-                            android:id="@+id/donderdag8"
-                            android:text="les donderdag 08" />
+                        <EditText android:id="@+id/donderdag8" />
 
-                        <EditText
-                            android:id="@+id/vrijdag8"
-                            android:text="les vrijdag 08" />
+                        <EditText android:id="@+id/vrijdag8" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="17:30" />
 
-                        <EditText
-                            android:id="@+id/maandag9"
-                            android:text="les maandag 09" />
+                        <EditText android:id="@+id/maandag9" />
 
-                        <EditText
-                            android:id="@+id/dinsdag9"
-                            android:text="les dinsdag 09" />
+                        <EditText android:id="@+id/dinsdag9" />
 
-                        <EditText
-                            android:id="@+id/woensdag9"
-                            android:text="les woendsag 09" />
+                        <EditText android:id="@+id/woensdag9" />
 
-                        <EditText
-                            android:id="@+id/donderdag9"
-                            android:text="les donderdag 09" />
+                        <EditText android:id="@+id/donderdag9" />
 
-                        <EditText
-                            android:id="@+id/vrijdag9"
-                            android:text="les vrijdag 09" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_margin="5dp"
-                        android:background="@android:color/holo_green_light">
-
-                        <TextView android:text="18:30" />
-
-                        <EditText
-                            android:id="@+id/maandag10"
-                            android:text="les maandag 10" />
-
-                        <EditText
-                            android:id="@+id/dinsdag10"
-                            android:text="les dinsdag 10" />
-
-                        <EditText
-                            android:id="@+id/woensdag10"
-                            android:text="les woendsag 10" />
-
-                        <EditText
-                            android:id="@+id/donderdag10"
-                            android:text="les donderdag 10" />
-
-                        <EditText
-                            android:id="@+id/vrijdag10"
-                            android:text="les vrijdag 10" />
+                        <EditText android:id="@+id/vrijdag9" />
                     </TableRow>
 
                     <TableRow
@@ -358,25 +221,15 @@
 
                         <TextView android:text="Bus:" />
 
-                        <EditText
-                            android:id="@+id/maandagBusHome"
-                            android:text="bus home 1" />
+                        <TextView android:id="@+id/maandagBusHome" />
 
-                        <EditText
-                            android:id="@+id/dinsdagBusHome"
-                            android:text="bus home 2" />
+                        <TextView android:id="@+id/dinsdagBusHome" />
 
-                        <EditText
-                            android:id="@+id/woensdagBusHome"
-                            android:text="bus home 3" />
+                        <TextView android:id="@+id/woensdagBusHome" />
 
-                        <EditText
-                            android:id="@+id/donderdagBusHome"
-                            android:text="bus home 4" />
+                        <TextView android:id="@+id/donderdagBusHome" />
 
-                        <EditText
-                            android:id="@+id/vrijdagBusHome"
-                            android:text="bus home 5" />
+                        <TextView android:id="@+id/vrijdagBusHome" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>

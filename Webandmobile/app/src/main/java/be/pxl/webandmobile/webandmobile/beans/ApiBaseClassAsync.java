@@ -83,13 +83,15 @@ public abstract class ApiBaseClassAsync extends AsyncTask<String, Void, String> 
     //Before:
     @Override
     protected void onPreExecute() {
-        progressBar.setVisibility(View.VISIBLE);
+        if (progressBar != null)
+            progressBar.setVisibility(View.VISIBLE);
     }
 
     //After:
     @Override
     protected void onPostExecute(String passedString) {
-        progressBar.setVisibility(View.GONE);
+        if (progressBar != null)
+            progressBar.setVisibility(View.GONE);
     }
 
     //Getters:

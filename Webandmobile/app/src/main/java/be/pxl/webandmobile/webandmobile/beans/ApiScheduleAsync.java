@@ -1,12 +1,8 @@
 package be.pxl.webandmobile.webandmobile.beans;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ProgressBar;
 import org.json.JSONArray;
-
-
-import be.pxl.webandmobile.webandmobile.R;
 
 /**
  * Created by René on 23/10/2017.
