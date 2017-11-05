@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
-import be.pxl.webandmobile.webandmobile.beans.ApiBaseScheduleAsync;
+import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 import be.pxl.webandmobile.webandmobile.beans.ApiClassesAsync;
 
 public class SelectClass extends AppCompatActivity {
@@ -25,7 +25,7 @@ public class SelectClass extends AppCompatActivity {
     private View specializationLayout;
     private View classLayout;
     private String[] classContents;
-    private ApiBaseScheduleAsync api;
+    private ApiBaseClassAsync api;
     private Button button;
 
     @Override

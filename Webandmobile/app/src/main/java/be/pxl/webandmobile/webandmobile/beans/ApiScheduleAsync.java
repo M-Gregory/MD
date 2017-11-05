@@ -9,7 +9,7 @@ import org.json.JSONArray;
  */
 
 //TODO: verwerken JSON data
-public class ApiScheduleAsync extends ApiBaseScheduleAsync {
+public class ApiScheduleAsync extends ApiBaseClassAsync {
 
     public ApiScheduleAsync(Context context, ProgressBar progressBar) {
         super(context, progressBar);
@@ -21,8 +21,8 @@ public class ApiScheduleAsync extends ApiBaseScheduleAsync {
     }
 
     @Override
-    protected void onPostExecute(JSONArray jsonArray) {
-        super.onPostExecute(jsonArray);
+    protected void onPostExecute(String passedString) {
+        super.onPostExecute(passedString);
 
     }
 }
