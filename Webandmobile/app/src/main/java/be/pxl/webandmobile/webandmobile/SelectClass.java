@@ -12,7 +12,7 @@ import android.widget.Spinner;
 public class SelectClass extends AppCompatActivity {
 
     //public static String klasNaam = "";
-    public static PXLClass aClass = new PXLClass();
+
     //private static Spinner s;
 
     @Override
@@ -30,8 +30,8 @@ public class SelectClass extends AppCompatActivity {
         Button classSelectButton = (Button) findViewById(R.id.classSelectButton);
         classSelectButton.setOnClickListener(click -> {
             //System.out.println("test");
-            aClass.setClassName(s.getSelectedItem().toString());
-            alert("you clicked " + aClass.getClassName(), this);
+
+            alert("you clicked this ", this);
         });
 
         Button saveButton = (Button) findViewById(R.id.saveButton);

@@ -8,4 +8,5 @@
     tools:context="be.pxl.webandmobile.webandmobile.Schedule"
     tools:showIn="@layout/activity_schedule">
 
+
 </android.support.constraint.ConstraintLayout>

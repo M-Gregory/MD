@@ -6,7 +6,14 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
+
+    private final String FILE = "uurrooster_file";
+    private FileOutputStream fileOutputStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         TitleClass.initialise(getTitle().toString());//init only once!
 
         //2.1 fill in class:
-        String selectedClass = SelectClass.aClass.getClassName();
+        String selectedClass = "";
         if (selectedClass == null) {
             selectedClass = "geen klas geselecteerd";
         }
@@ -36,5 +43,7 @@ public class MainActivity extends AppCompatActivity {
         //3.2.3: schedule
         Button scheduleButton = (Button) findViewById(R.id.schedule);
         scheduleButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, Schedule.class)));
+
     }
+
 }
