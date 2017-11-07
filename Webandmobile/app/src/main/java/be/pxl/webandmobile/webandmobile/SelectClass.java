@@ -37,7 +37,7 @@ public class SelectClass extends AppCompatActivity {
 
         //2. fill spinner (thread it!)
         yearSpinner = (Spinner) findViewById(R.id.dropdownYear);
-        String[] contents = {"1 TIN", "2 TIN", "3 TIN"};//via api of webrip
+        String[] contents = {"1TIN", "2TIN", "3TIN"};//via api of webrip
         yearSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, contents));
 
         specSpinner = (Spinner) findViewById(R.id.dropdownSpecialization);
@@ -53,7 +53,6 @@ public class SelectClass extends AppCompatActivity {
         specializationLayout = findViewById(R.id.relativeSpecialization);
 
         //3. click event:
-        //TODO: cachen van de geselecteerde klas
         button = (Button) findViewById(R.id.btn);
         button.setOnClickListener(click -> {
             alert("Selecteer klas " + classSpinner.getSelectedItem().toString() + "?", this);
@@ -141,7 +140,7 @@ public class SelectClass extends AppCompatActivity {
 
                         //add class to keyset
                         preferencesEditor.putString( "class", classSpinner.getSelectedItem().toString());
-                        preferencesEditor.commit();
+                        preferencesEditor.apply();
 
                         dialog.cancel();
                         Intent i=new Intent(SelectClass.this, MainActivity.class);

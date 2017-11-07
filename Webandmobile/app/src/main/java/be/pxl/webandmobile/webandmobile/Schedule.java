@@ -12,6 +12,7 @@ import java.util.Date;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 import be.pxl.webandmobile.webandmobile.beans.ApiRoutesAsync;
+import be.pxl.webandmobile.webandmobile.beans.ApiScheduleAsync;
 import be.pxl.webandmobile.webandmobile.beans.BusRoute;
 
 public class Schedule extends AppCompatActivity {
@@ -64,6 +65,17 @@ public class Schedule extends AppCompatActivity {
                 courses[j][i % 9].setText(dummy2[i]);
                 courses[j][i % 9].setEnabled(false);
             }
+        }
+
+        Context context = getApplicationContext();
+        SharedPreferences preferences = context.getSharedPreferences("classApi", context.MODE_PRIVATE);
+        String className = preferences.getString("class", null);
+
+        try {
+            ApiBaseClassAsync api = new ApiScheduleAsync(Schedule.this, null, courses, className);
+            api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken");
+        } catch (Exception ex) {
+            //TODO: add alert saying something is wrong with the selected class
         }
     }
 

@@ -51,9 +51,10 @@ public class ApiClassesAsync extends ApiBaseClassAsync {
                     String tempClass = classValue.getString("klas");
                     classList.add(tempClass);
                 }
-            } catch (JSONException e) {
-                classList = null;
-            }
+        } catch (JSONException e) {
+            //classList = null;
+            e.printStackTrace();
+        }
 
         spinner.setAdapter(new ArrayAdapter<String>(super.getContext(), R.layout.support_simple_spinner_dropdown_item, classList));
     }
