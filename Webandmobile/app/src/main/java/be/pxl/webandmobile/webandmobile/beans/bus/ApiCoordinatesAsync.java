@@ -1,4 +1,4 @@
-package be.pxl.webandmobile.webandmobile.beans;
+package be.pxl.webandmobile.webandmobile.beans.bus;
 
 import android.content.Context;
 import android.view.View;
@@ -11,6 +11,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
+import be.pxl.webandmobile.webandmobile.beans.passdata.ApiSetupClassOne;
 
 /**
  * Created by 11400136 on 22/10/2017.

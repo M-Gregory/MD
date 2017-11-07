@@ -11,8 +11,8 @@ import android.widget.TextView;
 import java.util.Date;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
-import be.pxl.webandmobile.webandmobile.beans.ApiRoutesAsync;
-import be.pxl.webandmobile.webandmobile.beans.BusRoute;
+import be.pxl.webandmobile.webandmobile.beans.bus.ApiRoutesAsync;
+import be.pxl.webandmobile.webandmobile.beans.bus.BusRoute;
 
 public class Schedule extends AppCompatActivity {
     @Override

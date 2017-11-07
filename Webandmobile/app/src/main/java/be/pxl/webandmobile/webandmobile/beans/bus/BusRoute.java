@@ -1,4 +1,4 @@
-package be.pxl.webandmobile.webandmobile.beans;
+package be.pxl.webandmobile.webandmobile.beans.bus;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -12,8 +12,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
-import be.pxl.webandmobile.webandmobile.beans.ApiRoutesAsync;
-import be.pxl.webandmobile.webandmobile.beans.BusRoute;
+import be.pxl.webandmobile.webandmobile.beans.bus.ApiRoutesAsync;
+import be.pxl.webandmobile.webandmobile.beans.bus.BusRoute;
 
 public class BusApiTest extends AppCompatActivity {
     @Override
