@@ -69,9 +69,9 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
         /**
          * Create the main activity.
          * @param savedInstanceState previously saved instance data.
-         *                           niet nodig
+         *                           niet nodig behalve laatste stuk??????
          */
-        @Override
+       @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             LinearLayout activityLayout = new LinearLayout(this);
@@ -421,3 +421,9 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
         }
     }
 }
+/*
+Keystore: C:/Daan Reynders/.android/Keystores/android.jks
+password: android
+key alias: android
+key password: android
+ */
