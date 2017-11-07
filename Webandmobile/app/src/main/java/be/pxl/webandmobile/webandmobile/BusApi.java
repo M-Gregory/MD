@@ -4,14 +4,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
-import be.pxl.webandmobile.webandmobile.beans.ApiCoordinatesAsync;
+import be.pxl.webandmobile.webandmobile.beans.bus.ApiCoordinatesAsync;
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
-import be.pxl.webandmobile.webandmobile.beans.ApiSetupClassOne;
+import be.pxl.webandmobile.webandmobile.beans.passdata.ApiSetupClassOne;
 
 public class BusApi extends AppCompatActivity {
 
@@ -21,7 +23,8 @@ public class BusApi extends AppCompatActivity {
         setContentView(R.layout.activity_bus_api);
 
         //1.1 first time data
-        Button button = (Button) findViewById(R.id.selectBusStop);
+        //Button button = (Button) findViewById(R.id.selectBusStop);
+        EditText editText = (EditText) findViewById(R.id.editableText);
 
         //2.1 second time data
         //2.2 stuffs for async task...
@@ -29,9 +32,33 @@ public class BusApi extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.busApiOverviewStartBusListView);
 
         //3.1 during click 1
+        /*
         button.setOnClickListener(view -> {
-            ApiBaseClassAsync api = new ApiCoordinatesAsync(BusApi.this, progressBar, listView);
-            api.execute("https://www.delijn.be/rise-api-search/locations/locatiezoeker/5/" + ((EditText) findViewById(R.id.editableText)).getText());//neerpelt omvormen dmv input user...
+            if (editText.getText().length() > 0)
+                fireEvent(progressBar, listView);
+            else
+                listView.setAdapter(null);
+        });
+        */
+
+        //3.2 during enter (keypad):
+        editText.setOnEditorActionListener((linkedTextView, i, linkedKeyEvent) -> {
+            /*
+            if (i == 6 && linkedTextView.getText().length() > 0) {
+                fireEvent(progressBar, listView);
+
+                return false;//close menu
+            }else if(i==6){
+                listView.setAdapter(null);//clear list
+            }
+            */
+            if (linkedTextView.getText().length() > 0 && i == 6) {
+                fireEvent(progressBar, listView);
+            } else {
+                listView.setAdapter(null);//clear list.
+            }
+
+            return true;//keep menu open
         });
 
         //4.1 during select
@@ -56,5 +83,10 @@ public class BusApi extends AppCompatActivity {
         preferencesEditor.putInt("busXCoord", item.getxCoord());
         preferencesEditor.putInt("busYCoord", item.getyCoord());
         preferencesEditor.commit();
+    }
+
+    private void fireEvent(ProgressBar progressBar, ListView listView) {
+        ApiBaseClassAsync api = new ApiCoordinatesAsync(BusApi.this, progressBar, listView);
+        api.execute("https://www.delijn.be/rise-api-search/locations/locatiezoeker/5/" + ((EditText) findViewById(R.id.editableText)).getText());//neerpelt omvormen dmv input user...
     }
 }

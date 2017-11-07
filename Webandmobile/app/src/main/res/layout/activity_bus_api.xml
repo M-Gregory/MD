@@ -31,21 +31,25 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@id/selectTextView"
-                android:textSize="@dimen/fab_margin" />
+                android:textSize="@dimen/fab_margin"
+                android:imeOptions="actionDone"
+                android:inputType="text"/>
         </RelativeLayout>
 
+        <!--
         <Button
             android:id="@+id/selectBusStop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/busLayout1"
             android:text="Selecteer halte" />
+        -->
 
         <ProgressBar
             android:id="@+id/busApiprogress1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/selectBusStop"
+            android:layout_below="@id/busLayout1"
             android:visibility="invisible" />
 
         <ListView

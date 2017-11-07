@@ -1,4 +1,4 @@
-package be.pxl.webandmobile.webandmobile.beans;
+package be.pxl.webandmobile.webandmobile.beans.passdata;
 
 import java.io.Serializable;
 
