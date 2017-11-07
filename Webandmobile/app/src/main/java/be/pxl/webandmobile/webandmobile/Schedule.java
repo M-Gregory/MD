@@ -5,10 +5,16 @@ import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 import be.pxl.webandmobile.webandmobile.beans.bus.ApiRoutesAsync;
@@ -26,14 +32,14 @@ public class Schedule extends AppCompatActivity {
 
     private void loadDataIntoRoster() {
         //all fields into multidimensional array
-        //bus:
+        //1.1 busfields:
         TextView[][] busRegeling = {
                 {(TextView) findViewById(R.id.maandagBusToSchool), (TextView) findViewById(R.id.dinsdagBusToSchool), (TextView) findViewById(R.id.woensdagBusToSchool), (TextView) findViewById(R.id.donderdagBusToSchool), (TextView) findViewById(R.id.vrijdagBusToSchool)},
                 {(TextView) findViewById(R.id.maandagBusHome), (TextView) findViewById(R.id.dinsdagBusHome), (TextView) findViewById(R.id.woensdagBusHome), (TextView) findViewById(R.id.donderdagBusHome), (TextView) findViewById(R.id.vrijdagBusHome)}
         };
 
-        //class/edited fields...
-        EditText[][] courses = {
+        //1.2 class/editable fields...
+        EditText[][] editableFields = {
                 {(EditText) findViewById(R.id.maandag1), (EditText) findViewById(R.id.maandag2), (EditText) findViewById(R.id.maandag3), (EditText) findViewById(R.id.maandag4), (EditText) findViewById(R.id.maandag5), (EditText) findViewById(R.id.maandag6), (EditText) findViewById(R.id.maandag7), (EditText) findViewById(R.id.maandag8), (EditText) findViewById(R.id.maandag9), (EditText) findViewById(R.id.maandag10)},
                 {(EditText) findViewById(R.id.dinsdag1), (EditText) findViewById(R.id.dinsdag2), (EditText) findViewById(R.id.dinsdag3), (EditText) findViewById(R.id.dinsdag4), (EditText) findViewById(R.id.dinsdag5), (EditText) findViewById(R.id.dinsdag6), (EditText) findViewById(R.id.dinsdag7), (EditText) findViewById(R.id.dinsdag8), (EditText) findViewById(R.id.dinsdag9), (EditText) findViewById(R.id.dinsdag10)},
                 {(EditText) findViewById(R.id.woensdag1), (EditText) findViewById(R.id.woensdag2), (EditText) findViewById(R.id.woensdag3), (EditText) findViewById(R.id.woensdag4), (EditText) findViewById(R.id.woensdag5), (EditText) findViewById(R.id.woensdag6), (EditText) findViewById(R.id.woensdag7), (EditText) findViewById(R.id.woensdag8), (EditText) findViewById(R.id.woensdag9), (EditText) findViewById(R.id.woensdag10)},
@@ -41,27 +47,29 @@ public class Schedule extends AppCompatActivity {
                 {(EditText) findViewById(R.id.vrijdag1), (EditText) findViewById(R.id.vrijdag2), (EditText) findViewById(R.id.vrijdag3), (EditText) findViewById(R.id.vrijdag4), (EditText) findViewById(R.id.vrijdag5), (EditText) findViewById(R.id.vrijdag6), (EditText) findViewById(R.id.vrijdag7), (EditText) findViewById(R.id.vrijdag8), (EditText) findViewById(R.id.vrijdag9), (EditText) findViewById(R.id.vrijdag10)}
         };
 
-        //setup courses:
-        //TODO: change the dummy data string into a saved string or ? ...
-        setupCourses(courses);
+        //2.1 setup courses:
+        setupCourses(editableFields);
 
-        //setup busses (note, this HAS to come after setupCourses!!!)
+        //2.2 setup busses (note, this HAS to come after setupCourses!!!)
         try {
-            setupBusses(busRegeling, courses);
+            setupBusses(busRegeling, editableFields);
         } catch (Exception e) {
             e.printStackTrace();
             //no internet (probably).
         }
+
+        //3.3 save editable fields on change
+        changeableEdit(editableFields);
     }
 
     private void setupCourses(EditText[][] courses) {
-        //// TODO: 31/10/2017: make sure courses are inserted from a saved file, note empty courses should be a "String.empty" for now (you can edit the checks if you want something else!
+        // TODO: 31/10/2017: make sure courses are inserted from a saved file, note empty courses should be a "String.empty" for now (you can edit the checks if you want something else!
         String dummy = "m1;m2;m3;m4;m5;m6;m7;m8;m9;m10; ;d2;d3;d4;d5;d6;d7;d8; ;d10;w1;w2;w3;w4;w5;w6;w7;w8;w9;w10;d1;d2;d3;d4;d5;d6;d7;d8;d9;d10;v1;v2;v3;v4;v5;v6;v7;v8;v9;v10";
         String[] dummy2 = dummy.split(";");
 
         //courses:
         for (int i = 0, j = 0; i < dummy2.length; i++, j = i / 10) {
-            if (!courses[j][i % 10].equals(" ")) {//space means no data...
+            if (!dummy2[i].equals(" ")) {//space means no data...
                 courses[j][i % 10].setText(dummy2[i]);
                 courses[j][i % 10].setEnabled(false);
             }
@@ -136,6 +144,103 @@ public class Schedule extends AppCompatActivity {
                 }
             }//busdata not set, so just quit
         }//else weekend, not at current roster so skip it.
+    }
+
+    private void changeableEdit(EditText[][] editableFields) {
+        final Context context = getApplicationContext();
+        final SharedPreferences preferences = context.getSharedPreferences("editedFields", context.MODE_PRIVATE);
+        final SharedPreferences.Editor preferencesEditor = preferences.edit();
+
+        //preferencesEditor.clear();preferencesEditor.commit();//clear, usefull for resetting.
+
+        if (preferences.getString("ma1", null) == null) {//i'll set them to strings
+            //generate default data:
+            for (int i = 1; i < editableFields.length; i++) {
+                String s = determineDay(i);
+
+                //generate key-value (value empty):
+                for (int j = 1; j <= editableFields[i].length; j++) {
+                    preferencesEditor.putString(s + j, "");
+                }
+            }
+            preferencesEditor.commit();//save
+        } else {
+            //load data
+            for (int i = 0; i < editableFields.length; i++) {
+                String s = determineDay(i + 1);
+
+                //generate key-value (value empty):
+                for (int j = 0; j < editableFields[i].length; j++) {
+                    if (editableFields[i][j].isEnabled())
+                        editableFields[i][j].setText(preferences.getString(s + (j + 1), ""));
+                }
+            }
+        }
+
+        //set listeners to all editTexts:
+        for (int i = 0; i < editableFields.length; i++) {
+            for (int j = 0; j < editableFields[i].length; j++) {
+                if (editableFields[i][j].isEnabled()) {//meaning no class or bus
+                    //finals because AS nagged me.
+                    final EditText field = editableFields[i][j];
+                    final int day = j;
+
+                    editableFields[i][j].addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            //don't worry about me.
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            //don't worry abuot me.
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+                            //i'm interesting xD
+                            for (int k = 0; k < editableFields.length; k++) {
+                                for (int l = 0; l < editableFields[k].length; l++) {
+                                    if (editableFields[k][l].getText().hashCode() == editable.hashCode()) {
+                                        preferencesEditor.putString(determineDay(k + 1) + (l + 1), editable.toString());
+                                        preferencesEditor.commit();
+
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    private String determineDay(int i) {
+        String s;
+
+        switch (i) {
+            //define key:
+            case (1):
+                s = "ma";
+                break;
+            case (2):
+                s = "di";
+                break;
+            case (3):
+                s = "wo";
+                break;
+            case (4):
+                s = "do";
+                break;
+            case (5):
+                s = "vr";
+                break;
+            default:
+                s = null;
+        }
+
+        return s;
     }
 
     private int getCoursesEndHour(EditText[] classes) {
