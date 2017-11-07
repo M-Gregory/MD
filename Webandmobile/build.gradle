@@ -1,6 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply plugin: 'com.android.application'
-
 buildscript {
     repositories {
         jcenter()
@@ -19,39 +17,8 @@ allprojects {
     }
 }
 
-/*task clean(type: Delete) {
+task clean(type: Delete) {
     delete rootProject.buildDir
-}*/
-
-android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.1'
-
-    defaultConfig {
-        applicationId "be.pxl.webandmobile.webandmobile"
-        minSdkVersion 11
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                    'proguard-rules.pro'
-        }
-    }
 }
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    //compile 'com.android.support:appcompat-v7:26.0.1'
-    compile 'com.google.android.gms:play-services-auth:11.0.4'
-    compile 'pub.devrel:easypermissions:0.3.0'
-    compile('com.google.api-client:google-api-client-android:1.23.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-    compile('com.google.apis:google-api-services-calendar:v3-rev262-1.23.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-}
+
