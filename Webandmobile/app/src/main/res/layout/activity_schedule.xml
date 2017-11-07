@@ -61,7 +61,7 @@
 
                         <TextView android:text="Bus:" />
 
-                        <TextView android:id="@+id/maandagBusToSchool"/>
+                        <TextView android:id="@+id/maandagBusToSchool" />
 
                         <TextView android:id="@+id/dinsdagBusToSchool" />
 
@@ -97,7 +97,7 @@
 
                         <EditText android:id="@+id/dinsdag2" />
 
-                        <EditText android:id="@+id/woensdag2"  />
+                        <EditText android:id="@+id/woensdag2" />
 
                         <EditText android:id="@+id/donderdag2" />
 
