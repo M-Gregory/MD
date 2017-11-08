@@ -79,6 +79,7 @@ public class SelectClass extends AppCompatActivity {
                         //call http://data.pxl.be/roosters/v1/klassen/xTIN (1 of 2)
                         //vul classSpinner met de klassen vd json
                         api.execute("http://data.pxl.be/roosters/v1/klassen/" + selected);
+                        classLayout.setVisibility(View.VISIBLE);
                     }
                 } else {
                     started = true;
@@ -97,6 +98,7 @@ public class SelectClass extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(specSelected) {
                     api.execute("http://data.pxl.be/roosters/v1/klassen/3" + specSpinner.getSelectedItem().toString());
+                    classLayout.setVisibility(View.VISIBLE);
                 } else {
                     specSelected = true;
                 }
