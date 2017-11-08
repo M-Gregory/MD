@@ -34,6 +34,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -51,7 +52,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 
-public class GoogleCalenderAPI extends Activity implements EasyPermissions.PermissionCallbacks { //verwijder Activity
+public class GoogleCalenderAPI extends AppCompatActivity implements EasyPermissions.PermissionCallbacks { //verwijder Activity
         GoogleAccountCredential mCredential;
         private TextView mOutputText;
         private Button mCallApiButton;
@@ -69,8 +70,8 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
         /**
          * Create the main activity.
          * @param savedInstanceState previously saved instance data.
-         *                           niet nodig behalve laatste stuk??????
          */
+        //niet nodig behalve laatste stuk??????
        @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -114,6 +115,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
             setContentView(activityLayout);
 
             // Initialize credentials and service object.
+           //dit stuk blijft? misschien?
             mCredential = GoogleAccountCredential.usingOAuth2(
                     getApplicationContext(), Arrays.asList(SCOPES))
                     .setBackOff(new ExponentialBackOff());
@@ -128,6 +130,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
          * of the preconditions are not satisfied, the app will prompt the user as
          * appropriate.
          */
+        //blijft
     private void getResultsFromApi() {
         if (! isGooglePlayServicesAvailable()) {
             acquireGooglePlayServices();
@@ -150,6 +153,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      * function will be rerun automatically whenever the GET_ACCOUNTS permission
      * is granted.
      */
+    //blijft
     @AfterPermissionGranted(REQUEST_PERMISSION_GET_ACCOUNTS)
     private void chooseAccount() {
         if (EasyPermissions.hasPermissions(
@@ -185,6 +189,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      * @param data Intent (containing result data) returned by incoming
      *     activity result.
      */
+    //onbeslist
     @Override
     protected void onActivityResult(
             int requestCode, int resultCode, Intent data) {
@@ -229,8 +234,8 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      *     requestPermissions(android.app.Activity, String, int, String[])
      * @param permissions The requested permissions. Never null.
      * @param grantResults The grant results for the corresponding permissions
-     *     which is either PERMISSION_GRANTED or PERMISSION_DENIED. Never null.
      */
+    //blijft
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -247,6 +252,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      *         permission
      * @param list The requested permission list. Never null.
      */
+    //blijft
     @Override
     public void onPermissionsGranted(int requestCode, List<String> list) {
         // Do nothing.
@@ -259,6 +265,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      *         permission
      * @param list The requested permission list. Never null.
      */
+    //blijft
     @Override
     public void onPermissionsDenied(int requestCode, List<String> list) {
         // Do nothing.
@@ -268,6 +275,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      * Checks whether the device currently has a network connection.
      * @return true if the device has a network connection, false otherwise.
      */
+    //blijft
     private boolean isDeviceOnline() {
         ConnectivityManager connMgr =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -280,6 +288,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      * @return true if Google Play Services is available and up to
      *     date on this device; false otherwise.
      */
+    //blijft
     private boolean isGooglePlayServicesAvailable() {
         GoogleApiAvailability apiAvailability =
                 GoogleApiAvailability.getInstance();
@@ -292,6 +301,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      * Attempt to resolve a missing, out-of-date, invalid or disabled Google
      * Play Services installation via a user dialog, if possible.
      */
+    //blijft
     private void acquireGooglePlayServices() {
         GoogleApiAvailability apiAvailability =
                 GoogleApiAvailability.getInstance();
@@ -309,6 +319,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      * @param connectionStatusCode code describing the presence (or lack of)
      *     Google Play Services on this device.
      */
+    //blijft
     void showGooglePlayServicesAvailabilityErrorDialog(
             final int connectionStatusCode) {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
@@ -323,6 +334,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
      * An asynchronous task that handles the Google Calendar API call.
      * Placing the API calls in their own task ensures the UI stays responsive.
      */
+    //blijft
     private class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
         private com.google.api.services.calendar.Calendar mService = null;
         private Exception mLastError = null;
@@ -340,6 +352,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
          * Background task to call Google Calendar API.
          * @param params no parameters needed for this task.
          */
+        //blijft
         @Override
         protected List<String> doInBackground(Void... params) {
             try {
@@ -356,6 +369,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
          * @return List of Strings describing returned events.
          * @throws IOException
          */
+        //blijft
         private List<String> getDataFromApi() throws IOException {
             // List the next 10 events from the primary calendar.
             DateTime now = new DateTime(System.currentTimeMillis());
@@ -382,12 +396,14 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
         }
 
 
+        //blijft
         @Override
         protected void onPreExecute() {
             mOutputText.setText("");
             mProgress.show();
         }
 
+        //blijft
         @Override
         protected void onPostExecute(List<String> output) {
             mProgress.hide();
@@ -399,6 +415,7 @@ public class GoogleCalenderAPI extends Activity implements EasyPermissions.Permi
             }
         }
 
+        //blijft
         @Override
         protected void onCancelled() {
             mProgress.hide();

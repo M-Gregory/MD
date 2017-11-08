@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         Button scheduleButton = (Button) findViewById(R.id.schedule);
         scheduleButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, Schedule.class)));
 
+        //3.2.4: Google calender
+        Button googleButton = (Button) findViewById(R.id.googleCalender);
+        googleButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, GoogleCalenderAPI.class)));
     }
 
 }

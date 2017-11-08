@@ -33,6 +33,10 @@
             android:name=".Schedule"
             android:label="@string/title_activity_schedule"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".GoogleCalenderAPI"
+            android:label="Google calender"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

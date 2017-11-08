@@ -55,5 +55,19 @@
                 android:text="Lessenrooster" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/fourthRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/thirdRow"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/googleCalender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Google Calender" />
+        </RelativeLayout>
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
