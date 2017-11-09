@@ -39,7 +39,7 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
         //get les, leerkracht en lokaal
         List<String> olodList = new ArrayList<String>();
 
-        ApiBaseClassAsync api = new ApiGetClassData(super.getContext(), null, courses);
+        ApiBaseClassAsync api;
 
         try {
             JSONArray jsonArray = new JSONArray(passedString);
@@ -51,6 +51,7 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
             }
 
             for(String olod: olodList) {
+                api = new ApiGetClassData(super.getContext(), null, courses);
                 api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken/" + olod);
             }
         } catch (JSONException e) {

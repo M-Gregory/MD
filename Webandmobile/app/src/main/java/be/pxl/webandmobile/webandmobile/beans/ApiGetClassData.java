@@ -46,12 +46,13 @@ public class ApiGetClassData extends ApiBaseClassAsync {
         try {
             JSONArray jsonArray = new JSONArray(passedString);
             courseList = new ArrayList<>();
-            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
 
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject classInfo = jsonArray.getJSONObject(i);
+                String dateString = classInfo.getString("datum").replace("\\", "");
 
-                LocalDate date = LocalDate.parse(classInfo.getString("datum"));
+                LocalDate date = LocalDate.parse(dateString, formatter);
                 int weekOfDate = date.get(woy);
 
                 //add boolean to see if course is in the current week

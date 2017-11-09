@@ -33,7 +33,6 @@ public class SelectClass extends AppCompatActivity {
         //1. default:
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_class);
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //2. fill spinner (thread it!)
         yearSpinner = (Spinner) findViewById(R.id.dropdownYear);
@@ -47,7 +46,6 @@ public class SelectClass extends AppCompatActivity {
         classSpinner = (Spinner) findViewById(R.id.dropdownClass);
         classContents = new String[]{"", "", "", ""};//via api of webrip
         classSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, classContents));
-        api = new ApiClassesAsync(SelectClass.this, classSpinner, progressBar);
 
         classLayout = findViewById(R.id.relativeClass);
         specializationLayout = findViewById(R.id.relativeSpecialization);
@@ -62,6 +60,7 @@ public class SelectClass extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -78,6 +77,7 @@ public class SelectClass extends AppCompatActivity {
                     } else {
                         //call http://data.pxl.be/roosters/v1/klassen/xTIN (1 of 2)
                         //vul classSpinner met de klassen vd json
+                        api = new ApiClassesAsync(SelectClass.this, classSpinner, progressBar);
                         api.execute("http://data.pxl.be/roosters/v1/klassen/" + selected);
                         classLayout.setVisibility(View.VISIBLE);
                     }
@@ -97,6 +97,7 @@ public class SelectClass extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(specSelected) {
+                    api = new ApiClassesAsync(SelectClass.this, classSpinner, progressBar);
                     api.execute("http://data.pxl.be/roosters/v1/klassen/3" + specSpinner.getSelectedItem().toString());
                     classLayout.setVisibility(View.VISIBLE);
                 } else {
