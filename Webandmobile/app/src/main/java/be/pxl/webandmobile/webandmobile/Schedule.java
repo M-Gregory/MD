@@ -11,10 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 import be.pxl.webandmobile.webandmobile.beans.bus.ApiRoutesAsync;

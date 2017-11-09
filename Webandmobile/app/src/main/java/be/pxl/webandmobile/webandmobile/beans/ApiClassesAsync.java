@@ -1,7 +1,6 @@
 package be.pxl.webandmobile.webandmobile.beans;
 
 import android.content.Context;
-import android.util.JsonReader;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;

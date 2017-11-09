@@ -2,10 +2,7 @@ package be.pxl.webandmobile.webandmobile;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-<<<<<<< HEAD
-=======
 import android.content.SharedPreferences;
->>>>>>> development
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -56,14 +53,6 @@ public class SelectClass extends AppCompatActivity {
         specializationLayout = findViewById(R.id.relativeSpecialization);
 
         //3. click event:
-<<<<<<< HEAD
-        Button b = (Button) findViewById(R.id.btn);
-       /* b.setOnClickListener(click -> {
-            System.out.println("test");
-            alert("you clicked me", this);
-        }); */
-        b.setOnClickListener(view -> startActivity(new Intent(SelectClass.this, MainActivity.class)));
-=======
         button = (Button) findViewById(R.id.btn);
         button.setOnClickListener(click -> {
             alert("Selecteer klas " + classSpinner.getSelectedItem().toString() + "?", this);
@@ -133,7 +122,6 @@ public class SelectClass extends AppCompatActivity {
 
             }
         });
->>>>>>> development
     }
 
     private void alert(String message, SelectClass context) {

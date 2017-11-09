@@ -10,8 +10,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.pxl.webandmobile.webandmobile.Schedule;
-
 /**
  * Created by René on 23/10/2017.
  */
