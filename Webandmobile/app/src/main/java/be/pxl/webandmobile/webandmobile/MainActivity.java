@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         String add = "";
 
         if (!selectedClass.equals("")) {
-            add += "Klas: " + selectedClass;
+            add += "Course: " + selectedClass;
         }
 
         if (!selectedBus.equals("")) {
