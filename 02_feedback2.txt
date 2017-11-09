@@ -1,0 +1,9 @@
+
+gson (kan ipv asynctask)
+
+Bij te voegen:
+--------------
+fragments -> masterdetails (voor details als je op een vak klikt (niet vereist, maar zou beter zijn?)
+user interface UI-Friendly maken
+
+VEREIST ->: calendar sync moet er nog bij (net bij feedback van leraar als eis gekregen)!

@@ -1,40 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context="be.pxl.webandmobile.webandmobile.Schedule">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:scrollbars="none">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <HorizontalScrollView
+            android:id="@+id/horizontalView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:scrollbars="horizontal|vertical">
 
-    </android.support.design.widget.AppBarLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
 
-    <include layout="@layout/content_schedule"
-        android:id="@+id/include" />
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
 
-    <!-- <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" /> -->
+                    <TableRow android:background="@android:color/holo_green_light">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/rooster" />
+                        <TextView android:layout_width="80dp" />
+
+                        <TextView
+                            android:padding="5dp"
+                            android:text="Ma" />
+
+                        <TextView
+                            android:padding="5dp"
+                            android:text="Di" />
+
+                        <TextView
+                            android:padding="5dp"
+                            android:text="Wo" />
+
+                        <TextView
+                            android:padding="5dp"
+                            android:text="Do" />
+
+                        <TextView
+                            android:padding="5dp"
+                            android:text="Vr" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_margin="5dp"
+                        android:background="@android:color/holo_orange_light">
+
+                        <TextView android:text="Bus:" />
+
+                        <TextView android:id="@+id/maandagBusToSchool" />
+
+                        <TextView android:id="@+id/dinsdagBusToSchool" />
+
+                        <TextView android:id="@+id/woensdagBusToSchool" />
+
+                        <TextView android:id="@+id/donderdagBusToSchool" />
+
+                        <TextView android:id="@+id/vrijdagBusToSchool" />
+                    </TableRow>
+
+                    <TableRow android:layout_margin="5dp">
+
+                        <TextView android:text="08:30" />
+
+                        <EditText android:id="@+id/maandag1" />
+
+                        <EditText android:id="@+id/dinsdag1" />
+
+                        <EditText android:id="@+id/woensdag1" />
+
+                        <EditText android:id="@+id/donderdag1" />
+
+                        <EditText android:id="@+id/vrijdag1" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_margin="5dp"
+                        android:background="@android:color/holo_green_light">
+
+                        <TextView android:text="09:30" />
+
+                        <EditText android:id="@+id/maandag2" />
+
+                        <EditText android:id="@+id/dinsdag2" />
+
+                        <EditText android:id="@+id/woensdag2" />
+
+                        <EditText android:id="@+id/donderdag2" />
+
+                        <EditText android:id="@+id/vrijdag2" />
+                    </TableRow>
+
+                    <TableRow android:layout_margin="5dp">
+
+                        <TextView android:text="10:30" />
+
+                        <EditText android:id="@+id/maandag3" />
+
+                        <EditText android:id="@+id/dinsdag3" />
+
+                        <EditText android:id="@+id/woensdag3" />
+
+                        <EditText android:id="@+id/donderdag3" />
+
+                        <EditText android:id="@+id/vrijdag3" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_margin="5dp"
+                        android:background="@android:color/holo_green_light">
+
+                        <TextView android:text="11:30" />
+
+                        <EditText android:id="@+id/maandag4" />
+
+                        <EditText android:id="@+id/dinsdag4" />
+
+                        <EditText android:id="@+id/woensdag4" />
+
+                        <EditText android:id="@+id/donderdag4" />
+
+                        <EditText android:id="@+id/vrijdag4" />
+                    </TableRow>
+
+                    <TableRow android:layout_margin="5dp">
+
+                        <TextView android:text="12:30" />
+
+                        <EditText android:id="@+id/maandag5" />
+
+                        <EditText android:id="@+id/dinsdag5" />
+
+                        <EditText android:id="@+id/woensdag5" />
+
+                        <EditText android:id="@+id/donderdag5" />
+
+                        <EditText android:id="@+id/vrijdag5" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_margin="5dp"
+                        android:background="@android:color/holo_green_light">
+
+                        <TextView android:text="13:30" />
+
+                        <EditText android:id="@+id/maandag6" />
+
+                        <EditText android:id="@+id/dinsdag6" />
+
+                        <EditText android:id="@+id/woensdag6" />
+
+                        <EditText android:id="@+id/donderdag6" />
+
+                        <EditText android:id="@+id/vrijdag6" />
+                    </TableRow>
+
+                    <TableRow android:layout_margin="5dp">
+
+                        <TextView android:text="14:30" />
+
+                        <EditText android:id="@+id/maandag7" />
+
+                        <EditText android:id="@+id/dinsdag7" />
+
+                        <EditText android:id="@+id/woensdag7" />
+
+                        <EditText android:id="@+id/donderdag7" />
+
+                        <EditText android:id="@+id/vrijdag7" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_margin="5dp"
+                        android:background="@android:color/holo_green_light">
+
+                        <TextView android:text="15:30" />
+
+                        <EditText android:id="@+id/maandag8" />
+
+                        <EditText android:id="@+id/dinsdag8" />
+
+                        <EditText android:id="@+id/woensdag8" />
+
+                        <EditText android:id="@+id/donderdag8" />
+
+                        <EditText android:id="@+id/vrijdag8" />
+                    </TableRow>
+
+                    <TableRow android:layout_margin="5dp">
+
+                        <TextView android:text="16:30" />
+
+                        <EditText android:id="@+id/maandag9" />
+
+                        <EditText android:id="@+id/dinsdag9" />
+
+                        <EditText android:id="@+id/woensdag9" />
+
+                        <EditText android:id="@+id/donderdag9" />
+
+                        <EditText android:id="@+id/vrijdag9" />
+                    </TableRow>
+
+                    <TableRow android:layout_margin="5dp">
+
+                        <TextView android:text="17:30" />
+
+                        <EditText android:id="@+id/maandag10" />
+
+                        <EditText android:id="@+id/dinsdag10" />
+
+                        <EditText android:id="@+id/woensdag10" />
+
+                        <EditText android:id="@+id/donderdag10" />
+
+                        <EditText android:id="@+id/vrijdag10" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_margin="5dp"
+                        android:background="@android:color/holo_orange_light">
+
+                        <TextView android:text="Bus:" />
+
+                        <TextView android:id="@+id/maandagBusHome" />
+
+                        <TextView android:id="@+id/dinsdagBusHome" />
+
+                        <TextView android:id="@+id/woensdagBusHome" />
+
+                        <TextView android:id="@+id/donderdagBusHome" />
+
+                        <TextView android:id="@+id/vrijdagBusHome" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </ScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

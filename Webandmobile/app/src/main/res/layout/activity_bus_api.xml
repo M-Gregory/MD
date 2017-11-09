@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="be.pxl.webandmobile.webandmobile.BusApi">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:id="@+id/busLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/selectTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="LijnHalte: "
+                android:textSize="@dimen/fab_margin" />
+
+            <EditText
+                android:id="@+id/editableText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/selectTextView"
+                android:textSize="@dimen/fab_margin"
+                android:imeOptions="actionDone"
+                android:inputType="text"/>
+        </RelativeLayout>
+
+        <!--
+        <Button
+            android:id="@+id/selectBusStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/busLayout1"
+            android:text="Selecteer halte" />
+        -->
+
+        <ProgressBar
+            android:id="@+id/busApiprogress1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/busLayout1"
+            android:visibility="invisible" />
+
+        <ListView
+            android:id="@+id/busApiOverviewStartBusListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/busApiprogress1" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

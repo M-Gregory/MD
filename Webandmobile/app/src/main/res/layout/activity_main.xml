@@ -53,5 +53,26 @@
                 android:layout_height="wrap_content"
                 android:text="Lessenrooster" />
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fourthRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/thirdRow">
+
+            <Button
+                android:id="@+id/busApiButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bus instellen" />
+
+            <Button
+                android:id="@+id/busApiTestButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/busApiButton"
+                android:text="Busapi_test"/>
+        </RelativeLayout>
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
