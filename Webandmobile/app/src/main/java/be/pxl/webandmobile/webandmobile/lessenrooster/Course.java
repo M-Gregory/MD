@@ -1,4 +1,4 @@
-package be.pxl.webandmobile.webandmobile.beans;
+package be.pxl.webandmobile.webandmobile.lessenrooster;
 
 import java.time.LocalDate;
 

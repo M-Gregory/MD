@@ -11,14 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 import be.pxl.webandmobile.webandmobile.beans.bus.ApiRoutesAsync;
-import be.pxl.webandmobile.webandmobile.beans.ApiScheduleAsync;
+import be.pxl.webandmobile.webandmobile.lessenrooster.ApiScheduleAsync;
 import be.pxl.webandmobile.webandmobile.beans.bus.BusRoute;
 
 public class Schedule extends AppCompatActivity {
@@ -80,8 +76,12 @@ public class Schedule extends AppCompatActivity {
         String className = preferences.getString("class", null);
 
         try {
-            ApiBaseClassAsync api = new ApiScheduleAsync(Schedule.this, null, courses, className);
-            api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken");
+            if(ApiScheduleAsync.isCourseDataAvailable(context)) {
+                ApiScheduleAsync.getCourseData(context, courses);
+            } else {
+                ApiBaseClassAsync api = new ApiScheduleAsync(Schedule.this, null, courses, className);
+                api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken");
+            }
         } catch (Exception ex) {
             //TODO: add alert saying something is wrong with the selected class
         }

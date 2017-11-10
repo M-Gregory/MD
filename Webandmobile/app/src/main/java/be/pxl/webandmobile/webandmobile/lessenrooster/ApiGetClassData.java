@@ -1,4 +1,4 @@
-package be.pxl.webandmobile.webandmobile.beans;
+package be.pxl.webandmobile.webandmobile.lessenrooster;
 
 import android.content.Context;
 import android.widget.EditText;
@@ -15,6 +15,8 @@ import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 
 
 /**
@@ -86,8 +88,8 @@ public class ApiGetClassData extends ApiBaseClassAsync {
                     courses[dayOfWeek][hourValue].setText(c.toString());
                 }
             }
-        } catch (JSONException e) {
-            //TODO: add alert
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
