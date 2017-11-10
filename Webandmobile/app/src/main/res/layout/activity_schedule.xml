@@ -26,7 +26,7 @@
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:shrinkColumns="*"
+
                     android:stretchColumns="*">
 
                     <TableRow android:background="@android:color/holo_green_light">
@@ -61,30 +61,40 @@
 
                         <TextView android:text="Bus:" />
 
-                        <TextView android:id="@+id/maandagBusToSchool" />
+                        <TextView android:id="@+id/maandagBusToSchool"
+                            android:maxWidth="140dp"/>
 
-                        <TextView android:id="@+id/dinsdagBusToSchool" />
+                        <TextView android:id="@+id/dinsdagBusToSchool"
+                            android:maxWidth="140dp"  />
 
-                        <TextView android:id="@+id/woensdagBusToSchool" />
+                        <TextView android:id="@+id/woensdagBusToSchool"
+                            android:maxWidth="140dp" />
 
-                        <TextView android:id="@+id/donderdagBusToSchool" />
+                        <TextView android:id="@+id/donderdagBusToSchool"
+                            android:maxWidth="140dp" />
 
-                        <TextView android:id="@+id/vrijdagBusToSchool" />
+                        <TextView android:id="@+id/vrijdagBusToSchool"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="08:30" />
 
-                        <EditText android:id="@+id/maandag1" />
+                        <EditText android:id="@+id/maandag1"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag1" />
+                        <EditText android:id="@+id/dinsdag1"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag1" />
+                        <EditText android:id="@+id/woensdag1"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag1" />
+                        <EditText android:id="@+id/donderdag1"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag1" />
+                        <EditText android:id="@+id/vrijdag1"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow
@@ -93,30 +103,40 @@
 
                         <TextView android:text="09:30" />
 
-                        <EditText android:id="@+id/maandag2" />
+                        <EditText android:id="@+id/maandag2"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag2" />
+                        <EditText android:id="@+id/dinsdag2"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag2" />
+                        <EditText android:id="@+id/woensdag2"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag2" />
+                        <EditText android:id="@+id/donderdag2"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag2" />
+                        <EditText android:id="@+id/vrijdag2"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="10:30" />
 
-                        <EditText android:id="@+id/maandag3" />
+                        <EditText android:id="@+id/maandag3"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag3" />
+                        <EditText android:id="@+id/dinsdag3"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag3" />
+                        <EditText android:id="@+id/woensdag3"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag3" />
+                        <EditText android:id="@+id/donderdag3"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag3" />
+                        <EditText android:id="@+id/vrijdag3"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow
@@ -125,30 +145,40 @@
 
                         <TextView android:text="11:30" />
 
-                        <EditText android:id="@+id/maandag4" />
+                        <EditText android:id="@+id/maandag4"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag4" />
+                        <EditText android:id="@+id/dinsdag4"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag4" />
+                        <EditText android:id="@+id/woensdag4"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag4" />
+                        <EditText android:id="@+id/donderdag4"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag4" />
+                        <EditText android:id="@+id/vrijdag4"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="12:30" />
 
-                        <EditText android:id="@+id/maandag5" />
+                        <EditText android:id="@+id/maandag5"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag5" />
+                        <EditText android:id="@+id/dinsdag5"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag5" />
+                        <EditText android:id="@+id/woensdag5"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag5" />
+                        <EditText android:id="@+id/donderdag5"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag5" />
+                        <EditText android:id="@+id/vrijdag5"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow
@@ -157,30 +187,40 @@
 
                         <TextView android:text="13:30" />
 
-                        <EditText android:id="@+id/maandag6" />
+                        <EditText android:id="@+id/maandag6"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag6" />
+                        <EditText android:id="@+id/dinsdag6"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag6" />
+                        <EditText android:id="@+id/woensdag6"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag6" />
+                        <EditText android:id="@+id/donderdag6"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag6" />
+                        <EditText android:id="@+id/vrijdag6"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="14:30" />
 
-                        <EditText android:id="@+id/maandag7" />
+                        <EditText android:id="@+id/maandag7"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag7" />
+                        <EditText android:id="@+id/dinsdag7"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag7" />
+                        <EditText android:id="@+id/woensdag7"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag7" />
+                        <EditText android:id="@+id/donderdag7"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag7" />
+                        <EditText android:id="@+id/vrijdag7"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow
@@ -189,45 +229,60 @@
 
                         <TextView android:text="15:30" />
 
-                        <EditText android:id="@+id/maandag8" />
+                        <EditText android:id="@+id/maandag8"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag8" />
+                        <EditText android:id="@+id/dinsdag8"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag8" />
+                        <EditText android:id="@+id/woensdag8"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag8" />
+                        <EditText android:id="@+id/donderdag8"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag8" />
+                        <EditText android:id="@+id/vrijdag8"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="16:30" />
 
-                        <EditText android:id="@+id/maandag9" />
+                        <EditText android:id="@+id/maandag9"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag9" />
+                        <EditText android:id="@+id/dinsdag9"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag9" />
+                        <EditText android:id="@+id/woensdag9"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag9" />
+                        <EditText android:id="@+id/donderdag9"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag9" />
+                        <EditText android:id="@+id/vrijdag9"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow android:layout_margin="5dp">
 
                         <TextView android:text="17:30" />
 
-                        <EditText android:id="@+id/maandag10" />
+                        <EditText android:id="@+id/maandag10"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/dinsdag10" />
+                        <EditText android:id="@+id/dinsdag10"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/woensdag10" />
+                        <EditText android:id="@+id/woensdag10"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/donderdag10" />
+                        <EditText android:id="@+id/donderdag10"
+                            android:maxWidth="140dp" />
 
-                        <EditText android:id="@+id/vrijdag10" />
+                        <EditText android:id="@+id/vrijdag10"
+                            android:maxWidth="140dp" />
                     </TableRow>
 
                     <TableRow
@@ -236,15 +291,20 @@
 
                         <TextView android:text="Bus:" />
 
-                        <TextView android:id="@+id/maandagBusHome" />
+                        <TextView android:id="@+id/maandagBusHome"
+                            android:maxWidth="140dp" />
 
-                        <TextView android:id="@+id/dinsdagBusHome" />
+                        <TextView android:id="@+id/dinsdagBusHome"
+                            android:maxWidth="140dp" />
 
-                        <TextView android:id="@+id/woensdagBusHome" />
+                        <TextView android:id="@+id/woensdagBusHome"
+                            android:maxWidth="140dp" />
 
-                        <TextView android:id="@+id/donderdagBusHome" />
+                        <TextView android:id="@+id/donderdagBusHome"
+                            android:maxWidth="140dp" />
 
-                        <TextView android:id="@+id/vrijdagBusHome" />
+                        <TextView android:id="@+id/vrijdagBusHome"
+                            android:maxWidth="140dp" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>

@@ -14,7 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
-import be.pxl.webandmobile.webandmobile.beans.ApiClassesAsync;
+import be.pxl.webandmobile.webandmobile.lessenrooster.ApiClassesAsync;
+import be.pxl.webandmobile.webandmobile.lessenrooster.ApiScheduleAsync;
 
 public class SelectClass extends AppCompatActivity {
     private boolean started;
@@ -33,21 +34,19 @@ public class SelectClass extends AppCompatActivity {
         //1. default:
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_class);
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        //2. fill spinner (thread it!)
+        //2. fill spinners
         yearSpinner = (Spinner) findViewById(R.id.dropdownYear);
-        String[] contents = {"1TIN", "2TIN", "3TIN"};//via api of webrip
+        String[] contents = {"1TIN", "2TIN", "3TIN"};
         yearSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, contents));
 
         specSpinner = (Spinner) findViewById(R.id.dropdownSpecialization);
-        String[] specContents = {"AON", "SNB", "SWM"};//via api of webrip
+        String[] specContents = {"AON", "SNB", "SWM"};
         specSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, specContents));
 
         classSpinner = (Spinner) findViewById(R.id.dropdownClass);
-        classContents = new String[]{"", "", "", ""};//via api of webrip
+        classContents = new String[]{"", "", "", ""};//Has to be filled by an api call
         classSpinner.setAdapter(new ArrayAdapter<String>(SelectClass.this, R.layout.support_simple_spinner_dropdown_item, classContents));
-        api = new ApiClassesAsync(SelectClass.this, classSpinner, progressBar);
 
         classLayout = findViewById(R.id.relativeClass);
         specializationLayout = findViewById(R.id.relativeSpecialization);
@@ -62,22 +61,25 @@ public class SelectClass extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        //Select the year
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(started) {
                     String selected = yearSpinner.getSelectedItem().toString();
-                    //Zodat je altijd enkel begint met de eerste dropdown,
-                    // ook na het selecteren van een klas en daarna een nieuw jaar te kiezen
+                    //This ensures only the first dropdown is shown before a selection is made
                     specializationLayout.setVisibility(View.GONE);
                     classLayout.setVisibility(View.GONE);
 
+                    //If 3rd year is selected we will nee to pick a specialization first
                     if(selected.startsWith("3")) {
                         specializationLayout.setVisibility(View.VISIBLE);
                     } else {
                         //call http://data.pxl.be/roosters/v1/klassen/xTIN (1 of 2)
-                        //vul classSpinner met de klassen vd json
+                        //This will fill the classSpinner with the correct classes
+                        api = new ApiClassesAsync(SelectClass.this, classSpinner, progressBar);
                         api.execute("http://data.pxl.be/roosters/v1/klassen/" + selected);
                         classLayout.setVisibility(View.VISIBLE);
                     }
@@ -92,11 +94,12 @@ public class SelectClass extends AppCompatActivity {
             }
         });
 
-        //Selecteer hier de afstudeerrichting vann het derde jaar, (AON, SNB, SWM)
+        //Selects the specialization if 3TIN is selected
         specSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(specSelected) {
+                    api = new ApiClassesAsync(SelectClass.this, classSpinner, progressBar);
                     api.execute("http://data.pxl.be/roosters/v1/klassen/3" + specSpinner.getSelectedItem().toString());
                     classLayout.setVisibility(View.VISIBLE);
                 } else {
@@ -110,7 +113,7 @@ public class SelectClass extends AppCompatActivity {
             }
         });
 
-        //Kies hier tussen de klassen, deze worden opgehaald door de api
+        //Choose between the loaded classes of the selected year (+ specialization)
         classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -129,10 +132,14 @@ public class SelectClass extends AppCompatActivity {
         builder1.setMessage(message);
         builder1.setCancelable(true);
 
+        //Saves class and returns to the mainpage
         builder1.setPositiveButton(
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        //Clear previous coursedata
+                        ApiScheduleAsync.deleteCoursedata(getApplicationContext());
+
                         //save class in sharedpreferences
                         SharedPreferences preferences = context.getSharedPreferences("classApi", context.MODE_PRIVATE);
                         SharedPreferences.Editor preferencesEditor = preferences.edit();
@@ -151,13 +158,10 @@ public class SelectClass extends AppCompatActivity {
                     }
                 });
 
+        //Cancels the dialog and does nothing
         builder1.setNegativeButton(
                 "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
+                (dialog, id) -> dialog.cancel());
 
         AlertDialog alert11 = builder1.create();
         alert11.show();

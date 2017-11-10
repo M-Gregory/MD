@@ -1,4 +1,4 @@
-package be.pxl.webandmobile.webandmobile.beans;
+package be.pxl.webandmobile.webandmobile.lessenrooster;
 
 import android.content.Context;
 import android.view.View;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.pxl.webandmobile.webandmobile.R;
+import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 
 /**
  * Created by René on 23/10/2017.
@@ -31,14 +32,11 @@ public class ApiClassesAsync extends ApiBaseClassAsync {
 
     @Override
     protected void onPreExecute() {
-        spinner.setVisibility(View.INVISIBLE);
+        super.onPreExecute();
     }
 
     @Override
     protected void onPostExecute(String passedClasses) {
-        super.onPostExecute(passedClasses);
-        spinner.setVisibility(View.VISIBLE);
-
         //verwerk klasses in de spinner
         List<String> classList = new ArrayList<>();
 
@@ -55,6 +53,7 @@ public class ApiClassesAsync extends ApiBaseClassAsync {
             e.printStackTrace();
         }
 
+        super.onPostExecute(passedClasses);
         spinner.setAdapter(new ArrayAdapter<String>(super.getContext(), R.layout.support_simple_spinner_dropdown_item, classList));
     }
 }

@@ -14,7 +14,7 @@ import java.util.Date;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 import be.pxl.webandmobile.webandmobile.beans.bus.ApiRoutesAsync;
-import be.pxl.webandmobile.webandmobile.beans.ApiScheduleAsync;
+import be.pxl.webandmobile.webandmobile.lessenrooster.ApiScheduleAsync;
 import be.pxl.webandmobile.webandmobile.beans.bus.BusRoute;
 
 public class Schedule extends AppCompatActivity {
@@ -59,25 +59,29 @@ public class Schedule extends AppCompatActivity {
     }
 
     private void setupCourses(EditText[][] courses) {
-        // TODO: 31/10/2017: make sure courses are inserted from a saved file, note empty courses should be a "String.empty" for now (you can edit the checks if you want something else!
-        String dummy = "m1;m2;m3;m4;m5;m6;m7;m8;m9;m10; ;d2;d3;d4;d5;d6;d7;d8; ;d10;w1;w2;w3;w4;w5;w6;w7;w8;w9;w10;d1;d2;d3;d4;d5;d6;d7;d8;d9;d10;v1;v2;v3;v4;v5;v6;v7;v8;v9;v10";
-        String[] dummy2 = dummy.split(";");
+        // TODO: 31/10/2017: note empty courses should be a "String.empty" for now (you can edit the checks if you want something else!
+        //String dummy = "m1;m2;m3;m4;m5;m6;m7;m8;m9;m10; ;d2;d3;d4;d5;d6;d7;d8; ;d10;w1;w2;w3;w4;w5;w6;w7;w8;w9;w10;d1;d2;d3;d4;d5;d6;d7;d8;d9;d10;v1;v2;v3;v4;v5;v6;v7;v8;v9;v10";
+        //String[] dummy2 = dummy.split(";");
 
         //courses:
-        for (int i = 0, j = 0; i < dummy2.length; i++, j = i / 10) {
+        /* for (int i = 0, j = 0; i < dummy2.length; i++, j = i / 10) {
             if (!dummy2[i].equals(" ")) {//space means no data...
                 courses[j][i % 10].setText(dummy2[i]);
                 courses[j][i % 10].setEnabled(false);
             }
-        }
+        } */
 
         Context context = getApplicationContext();
         SharedPreferences preferences = context.getSharedPreferences("classApi", context.MODE_PRIVATE);
         String className = preferences.getString("class", null);
 
         try {
-            ApiBaseClassAsync api = new ApiScheduleAsync(Schedule.this, null, courses, className);
-            api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken");
+            if(ApiScheduleAsync.isCourseDataAvailable(context)) {
+                ApiScheduleAsync.getCourseData(context, courses);
+            } else {
+                ApiBaseClassAsync api = new ApiScheduleAsync(Schedule.this, null, courses, className);
+                api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken");
+            }
         } catch (Exception ex) {
             //TODO: add alert saying something is wrong with the selected class
         }

@@ -1,20 +1,20 @@
-package be.pxl.webandmobile.webandmobile.beans;
+package be.pxl.webandmobile.webandmobile.lessenrooster;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Created by René on 07/11/2017.
  */
 
-public class Klas {
-    private Date date;
+public class Course {
+    private LocalDate date;
     private int startHour;
     private int endHour;
     private String classRoom;
     private String olod;
     private String codeTeacher;
 
-    public Klas(Date date, int startHour, int endHour, String classRoom, String olod, String codeTeacher) {
+    public Course(LocalDate date, int startHour, int endHour, String classRoom, String olod, String codeTeacher) {
         this.date = date;
         this.startHour = startHour;
         this.endHour = endHour;
@@ -23,11 +23,11 @@ public class Klas {
         this.codeTeacher = codeTeacher;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -73,13 +73,6 @@ public class Klas {
 
     @Override
     public String toString() {
-        return "Klas{" +
-                "date=" + date +
-                ", startHour=" + startHour +
-                ", endHour=" + endHour +
-                ", classRoom='" + classRoom + '\'' +
-                ", olod='" + olod + '\'' +
-                ", codeTeacher='" + codeTeacher + '\'' +
-                '}';
+        return olod + " - " + codeTeacher + " - " + classRoom;
     }
 }
