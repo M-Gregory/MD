@@ -37,7 +37,7 @@ public class ApiGetClassData extends ApiBaseClassAsync {
 
     @Override
     protected void onPostExecute(String passedString) {
-        super.onPostExecute(passedString);
+        //super.onPostExecute(passedString);
         List<Course> courseList;
         LocalDate currentDate = LocalDate.now();
         TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
