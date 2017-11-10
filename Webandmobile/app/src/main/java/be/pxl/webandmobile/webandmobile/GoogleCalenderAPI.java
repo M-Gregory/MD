@@ -41,6 +41,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -75,47 +76,23 @@ public class GoogleCalenderAPI extends AppCompatActivity implements EasyPermissi
        @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            LinearLayout activityLayout = new LinearLayout(this);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT);
-            activityLayout.setLayoutParams(lp);
-            activityLayout.setOrientation(LinearLayout.VERTICAL);
-            activityLayout.setPadding(16, 16, 16, 16);
+            setContentView(R.layout.activity_google_calender);
 
-            ViewGroup.LayoutParams tlp = new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            mCallApiButton = new Button(this);
-            mCallApiButton.setText(BUTTON_TEXT);
-            mCallApiButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            mCallApiButton = (Button) findViewById(R.id.call_Button);
+            mCallApiButton.setOnClickListener(view ->
+                {
                     mCallApiButton.setEnabled(false);
                     mOutputText.setText("");
                     getResultsFromApi();
                     mCallApiButton.setEnabled(true);
-                }
-            });
-            activityLayout.addView(mCallApiButton);
+                });
 
-            mOutputText = new TextView(this);
-            mOutputText.setLayoutParams(tlp);
-            mOutputText.setPadding(16, 16, 16, 16);
-            mOutputText.setVerticalScrollBarEnabled(true);
-            mOutputText.setMovementMethod(new ScrollingMovementMethod());
-            mOutputText.setText(
-                    "Click the \'" + BUTTON_TEXT +"\' button to test the API.");
-            activityLayout.addView(mOutputText);
+            mOutputText = (TextView) findViewById(R.id.outputext);
 
             mProgress = new ProgressDialog(this);
             mProgress.setMessage("Calling Google Calendar API ...");
 
-            setContentView(activityLayout);
-
             // Initialize credentials and service object.
-           //dit stuk blijft? misschien?
             mCredential = GoogleAccountCredential.usingOAuth2(
                     getApplicationContext(), Arrays.asList(SCOPES))
                     .setBackOff(new ExponentialBackOff());
