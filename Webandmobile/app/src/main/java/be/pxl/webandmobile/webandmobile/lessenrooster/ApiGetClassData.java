@@ -84,8 +84,9 @@ public class ApiGetClassData extends ApiBaseClassAsync {
                 amount = Integer.parseInt(Integer.toString(endHour).substring(0,2)) - Integer.parseInt(Integer.toString(startHour).substring(0,2));
 
 
-                for(int i = hourValue; i < hourValue + amount; i++) {
-                    courses[dayOfWeek][hourValue].setText(c.toString());
+                for(int i = 0; i < amount; i++) {
+                    courses[dayOfWeek][hourValue + i].setText(c.toString());
+                    courses[dayOfWeek][hourValue + i].setEnabled(false);
                 }
             }
         } catch (Exception e) {

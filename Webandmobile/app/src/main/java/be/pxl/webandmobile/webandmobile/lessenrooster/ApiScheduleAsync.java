@@ -80,6 +80,7 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
         for(int i = 0; i < courseMatrix.length; i++) {
             for(int j = 0; j < courseMatrix[i].length; j++) {
                 courses[i][j].setText(courseMatrix[i][j]);
+                courses[i][j].setEnabled(false);
             }
         }
     }
@@ -110,5 +111,13 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
         //add class to keyset
         preferencesEditor.putString( "courses", stringToSave);
         preferencesEditor.apply();
+    }
+
+    public static void deleteCoursedata(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("courseApi", context.MODE_PRIVATE);
+        SharedPreferences.Editor preferencesEditor = preferences.edit();
+
+        //clear out old data:
+        preferencesEditor.clear();
     }
 }

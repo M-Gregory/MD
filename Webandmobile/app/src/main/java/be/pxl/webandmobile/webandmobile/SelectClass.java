@@ -15,6 +15,7 @@ import android.widget.Spinner;
 
 import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 import be.pxl.webandmobile.webandmobile.lessenrooster.ApiClassesAsync;
+import be.pxl.webandmobile.webandmobile.lessenrooster.ApiScheduleAsync;
 
 public class SelectClass extends AppCompatActivity {
     private boolean started;
@@ -136,6 +137,9 @@ public class SelectClass extends AppCompatActivity {
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        //Clear previous coursedata
+                        ApiScheduleAsync.deleteCoursedata(getApplicationContext());
+
                         //save class in sharedpreferences
                         SharedPreferences preferences = context.getSharedPreferences("classApi", context.MODE_PRIVATE);
                         SharedPreferences.Editor preferencesEditor = preferences.edit();
