@@ -44,9 +44,9 @@ public class Schedule extends AppCompatActivity {
         };
 
         //2.1 setup courses:
-        setupCourses(editableFields);
-
-        //2.2 setup busses (note, this HAS to come after setupCourses!!!)
+        setupCourses(editableFields, busRegeling);
+/*
+        //2.2 setup busses (note, this HAS to come after setupCourses!!!) -> (eh no, it now happens in the setupcourses asynctask!
         try {
             setupBusses(busRegeling, editableFields);
         } catch (Exception e) {
@@ -56,9 +56,10 @@ public class Schedule extends AppCompatActivity {
 
         //3.3 save editable fields on change
         changeableEdit(editableFields);
+        */
     }
 
-    private void setupCourses(EditText[][] courses) {
+    private void setupCourses(EditText[][] courses, TextView[][] busRegeling) {
         // TODO: 31/10/2017: note empty courses should be a "String.empty" for now (you can edit the checks if you want something else!
         //String dummy = "m1;m2;m3;m4;m5;m6;m7;m8;m9;m10; ;d2;d3;d4;d5;d6;d7;d8; ;d10;w1;w2;w3;w4;w5;w6;w7;w8;w9;w10;d1;d2;d3;d4;d5;d6;d7;d8;d9;d10;v1;v2;v3;v4;v5;v6;v7;v8;v9;v10";
         //String[] dummy2 = dummy.split(";");
@@ -76,17 +77,17 @@ public class Schedule extends AppCompatActivity {
         String className = preferences.getString("class", null);
 
         try {
-            if(ApiScheduleAsync.isCourseDataAvailable(context)) {
+            if (ApiScheduleAsync.isCourseDataAvailable(context)) {
                 ApiScheduleAsync.getCourseData(context, courses);
             } else {
-                ApiBaseClassAsync api = new ApiScheduleAsync(Schedule.this, null, courses, className);
+                ApiBaseClassAsync api = new ApiScheduleAsync(Schedule.this, null, courses, className, busRegeling);
                 api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken");
             }
         } catch (Exception ex) {
             //TODO: add alert saying something is wrong with the selected class
         }
     }
-
+    /*
     private void setupBusses(TextView[][] busRegeling, EditText[][] courses) {
         int dayofweek;
         Calendar cl = Calendar.getInstance();
@@ -262,5 +263,5 @@ public class Schedule extends AppCompatActivity {
 
         return -1;
     }
-
+    */
 }

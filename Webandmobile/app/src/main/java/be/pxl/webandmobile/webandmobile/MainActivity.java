@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         //2. custom:
         //Set Title:
-        setupTitle();//TODO: get class and buss...
+        setupTitle();
 
         //3.2: click event
         //3.2.1: select class:

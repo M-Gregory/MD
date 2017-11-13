@@ -90,7 +90,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/busApiButton"
-                android:text="Busapi_test" />
+                android:text="Busapi_test"
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="fill_parent"

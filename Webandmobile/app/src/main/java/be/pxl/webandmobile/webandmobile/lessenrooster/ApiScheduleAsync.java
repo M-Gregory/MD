@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,11 +22,13 @@ import be.pxl.webandmobile.webandmobile.beans.ApiBaseClassAsync;
 public class ApiScheduleAsync extends ApiBaseClassAsync {
     private String className;
     private EditText[][] courses;
+    private TextView[][] buss;
 
-    public ApiScheduleAsync(Context context, ProgressBar progressBar, EditText[][] courses, String className) {
+    public ApiScheduleAsync(Context context, ProgressBar progressBar, EditText[][] courses, String className, TextView[][] buss) {
         super(context, progressBar);
         this.className = className;
         this.courses = courses;
+        this.buss = buss;
     }
 
     @Override
@@ -42,14 +46,14 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
         try {
             JSONArray jsonArray = new JSONArray(passedString);
 
-            for(int i = 0; i < jsonArray.length(); i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject classInfo = jsonArray.getJSONObject(i);
                 String tempOlod = classInfo.getString("code_olod");
                 olodList.add(tempOlod);
             }
 
-            for(String olod: olodList) {
-                api = new ApiGetClassData(super.getContext(), null, courses);
+            for (String olod : olodList) {
+                api = new ApiGetClassData(super.getContext(), null, courses, buss);
                 api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken/" + olod);
             }
 
@@ -73,12 +77,12 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
         String[] temp = courseString.split(";");
         String[][] courseMatrix = new String[5][10];
 
-        for(int i = 0; i < temp.length; i++) {
+        for (int i = 0; i < temp.length; i++) {
             courseMatrix[i] = courseString.split(",");
         }
 
-        for(int i = 0; i < courseMatrix.length; i++) {
-            for(int j = 0; j < courseMatrix[i].length; j++) {
+        for (int i = 0; i < courseMatrix.length; i++) {
+            for (int j = 0; j < courseMatrix[i].length; j++) {
                 courses[i][j].setText(courseMatrix[i][j]);
                 courses[i][j].setEnabled(false);
             }
@@ -88,7 +92,7 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
     //Saves courseData in SharedPreferences
     //A comma seperates columns
     //Semicolon seperates rows
-    public static void saveCourseData(EditText [][] courses, Context context) {
+    public static void saveCourseData(EditText[][] courses, Context context) {
         String stringToSave = "";
         StringBuilder builder = new StringBuilder(stringToSave);
 
@@ -98,8 +102,8 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
         //clear out old data:
         preferencesEditor.clear();//clear out previous data!
 
-        for(int i = 0; i < courses.length; i++) {
-            for(int j = 0; j < courses[0].length; j++) {
+        for (int i = 0; i < courses.length; i++) {
+            for (int j = 0; j < courses[0].length; j++) {
                 builder.append(courses[i][j].getText());
                 builder.append(',');
             }
@@ -109,7 +113,7 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
         stringToSave = builder.toString();
 
         //add class to keyset
-        preferencesEditor.putString( "courses", stringToSave);
+        preferencesEditor.putString("courses", stringToSave);
         preferencesEditor.apply();
     }
 
