@@ -53,10 +53,10 @@ public class Schedule extends AppCompatActivity {
             e.printStackTrace();
             //no internet (probably).
         }
-
+        */
         //3.3 save editable fields on change
         changeableEdit(editableFields);
-        */
+
     }
 
     private void setupCourses(EditText[][] courses, TextView[][] busRegeling) {
@@ -87,6 +87,7 @@ public class Schedule extends AppCompatActivity {
             //TODO: add alert saying something is wrong with the selected class
         }
     }
+
     /*
     private void setupBusses(TextView[][] busRegeling, EditText[][] courses) {
         int dayofweek;
@@ -146,7 +147,7 @@ public class Schedule extends AppCompatActivity {
             }//busdata not set, so just quit
         }//else weekend, not at current roster so skip it.
     }
-
+*/
     private void changeableEdit(EditText[][] editableFields) {
         final Context context = getApplicationContext();
         final SharedPreferences preferences = context.getSharedPreferences("editedFields", context.MODE_PRIVATE);
@@ -177,7 +178,8 @@ public class Schedule extends AppCompatActivity {
                 }
             }
         }
-
+    }
+/*
         //set listeners to all editTexts:
         for (int i = 0; i < editableFields.length; i++) {
             for (int j = 0; j < editableFields[i].length; j++) {
@@ -216,34 +218,34 @@ public class Schedule extends AppCompatActivity {
             }
         }
     }
+*/
+        private String determineDay ( int i){
+            String s;
 
-    private String determineDay(int i) {
-        String s;
+            switch (i) {
+                //define key:
+                case (1):
+                    s = "ma";
+                    break;
+                case (2):
+                    s = "di";
+                    break;
+                case (3):
+                    s = "wo";
+                    break;
+                case (4):
+                    s = "do";
+                    break;
+                case (5):
+                    s = "vr";
+                    break;
+                default:
+                    s = null;
+            }
 
-        switch (i) {
-            //define key:
-            case (1):
-                s = "ma";
-                break;
-            case (2):
-                s = "di";
-                break;
-            case (3):
-                s = "wo";
-                break;
-            case (4):
-                s = "do";
-                break;
-            case (5):
-                s = "vr";
-                break;
-            default:
-                s = null;
+            return s;
         }
-
-        return s;
-    }
-
+/*
     private int getCoursesEndHour(EditText[] classes) {
         for (int i = classes.length - 1; i >= 0; i--) {
             if (!classes[i].getText().toString().trim().equals("")) {
@@ -264,4 +266,4 @@ public class Schedule extends AppCompatActivity {
         return -1;
     }
     */
-}
+    }
