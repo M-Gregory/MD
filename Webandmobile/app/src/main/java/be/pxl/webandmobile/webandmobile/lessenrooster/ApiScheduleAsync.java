@@ -51,10 +51,15 @@ public class ApiScheduleAsync extends ApiBaseClassAsync {
                 String tempOlod = classInfo.getString("code_olod");
                 olodList.add(tempOlod);
             }
-
+/*
             for (String olod : olodList) {
                 api = new ApiGetClassData(super.getContext(), null, courses, buss);
                 api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken/" + olod);
+            }
+*/
+            for (int i = 0; i < olodList.size(); i++) {
+                api = new ApiGetClassData(super.getContext(), null, courses, buss, i==olodList.size()-1);
+                api.execute("http://data.pxl.be/roosters/v1/klassen/" + className + "/vakken/" + olodList.get(i));
             }
 
             super.onPostExecute(passedString);

@@ -34,12 +34,14 @@ import be.pxl.webandmobile.webandmobile.beans.bus.BusRoute;
 public class ApiGetClassData extends ApiBaseClassAsync {
     private EditText[][] courses;
     private TextView[][] busRegeling;
+    private boolean isLastClass;
 
-    public ApiGetClassData(Context context, ProgressBar progressBar, EditText[][] courses, TextView[][] busRegeling) {
+    public ApiGetClassData(Context context, ProgressBar progressBar, EditText[][] courses, TextView[][] busRegeling, boolean isLastClass) {
         super(context, progressBar);
 
         this.courses = courses;
         this.busRegeling = busRegeling;
+        this.isLastClass = isLastClass;
     }
 
     @Override
@@ -105,13 +107,14 @@ public class ApiGetClassData extends ApiBaseClassAsync {
 
 
         //load busdata:
-        try {
-            setupBusses(busRegeling, courses);
-        } catch (Exception e) {
-            e.printStackTrace();
-            //no internet (probably).
+        if(isLastClass) {
+            try {
+                setupBusses(busRegeling, courses);
+            } catch (Exception e) {
+                e.printStackTrace();
+                //no internet (probably).
+            }
         }
-
         //3.3 save editable fields on change
         changeableEdit(courses);
     }
