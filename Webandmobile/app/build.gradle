@@ -19,6 +19,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    signingConfigs {
+        config {
+            keyAlias 'android'
+            keyPassword 'android'
+            //storeFile file('C:/Users/Daan Reynders/.android/Keystores/android.jks')//for crying out loud NO HARDCODED PATHS!!!
+            storeFile file("app/src/main/java/be/pxl/webandmobile/webandmobile/Keystore/android.jks")
+            storePassword 'android'
+        }
+    }
 }
 
 dependencies {
@@ -31,4 +41,18 @@ dependencies {
     compile 'com.android.support:design:26.+'
     compile 'org.jsoup:jsoup:1.10.3'
     testCompile 'junit:junit:4.12'
+    compile 'com.google.android.gms:play-services-auth:11.0.4'
+    compile 'pub.devrel:easypermissions:0.3.0'
+    compile('com.google.api-client:google-api-client-android:1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    compile('com.google.apis:google-api-services-calendar:v3-rev264-1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+
+    }
+    testCompile 'junit:junit:4.12'
+}
+
+configurations.all {
+    resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
 }

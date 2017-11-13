@@ -39,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         //3.3.2 bus test
         Button busApiTestButton = (Button) findViewById(R.id.busApiTestButton);
         busApiTestButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BusApiTest.class)));
+
+        //3.4: Google calendar
+        Button calendar = (Button) findViewById(R.id.calendarButton);
+        calendar.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, GoogleCalenderAPI.class)));
     }
 
     private void setupTitle() {
@@ -59,6 +63,6 @@ public class MainActivity extends AppCompatActivity {
             add += " Bus: " + selectedBus;
         }
 
-        setTitle(getTitle()+"; " + add.trim());
+        setTitle(getTitle() + "; " + add.trim());
     }
 }
